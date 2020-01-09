@@ -1,0 +1,435 @@
+<refentry id="gsf-MS-OLE2">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-MS-OLE2.top_of_page">MS OLE2</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>MS OLE2</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-MS-OLE2.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfInfileMSOle"/><anchor id="GsfOutfileMSOle"/>
+<synopsis>
+                    <link linkend="GsfInfileMSOle-struct">GsfInfileMSOle</link>;
+<link linkend="GsfInfile">GsfInfile</link>*          <link linkend="gsf-infile-msole-new">gsf_infile_msole_new</link>                (<link linkend="GsfInput">GsfInput</link> *source,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-infile-msole-get-class-id">gsf_infile_msole_get_class_id</link>       (<link linkend="GsfInfileMSOle">GsfInfileMSOle</link> const *ole,
+                                                         <link linkend="guint8">guint8</link> *res);
+                    <link linkend="GsfOutfileMSOle-struct">GsfOutfileMSOle</link>;
+<link linkend="GsfOutfile">GsfOutfile</link>*         <link linkend="gsf-outfile-msole-new">gsf_outfile_msole_new</link>               (<link linkend="GsfOutput">GsfOutput</link> *sink);
+<link linkend="GsfOutfile">GsfOutfile</link>*         <link linkend="gsf-outfile-msole-new-full">gsf_outfile_msole_new_full</link>          (<link linkend="GsfOutput">GsfOutput</link> *sink,
+                                                         <link linkend="guint">guint</link> bb_size,
+                                                         <link linkend="guint">guint</link> sb_size);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-outfile-msole-set-class-id">gsf_outfile_msole_set_class_id</link>      (<link linkend="GsfOutfileMSOle">GsfOutfileMSOle</link> *ole,
+                                                         <link linkend="guint8">guint8</link> const *clsid);
+<link linkend="GError">GError</link>*             <link linkend="gsf-msole-metadata-read">gsf_msole_metadata_read</link>             (<link linkend="GsfInput">GsfInput</link> *in,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> *accum);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-msole-metadata-write">gsf_msole_metadata_write</link>            (<link linkend="GsfOutput">GsfOutput</link> *out,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> const *meta_data,
+                                                         <link linkend="gboolean">gboolean</link> doc_not_component);
+<link linkend="GIConv">GIConv</link>              <link linkend="gsf-msole-iconv-open-codepages-for-export">gsf_msole_iconv_open_codepages_for_export</link>
+                                                        (<link linkend="int">int</link> codepage_to,
+                                                         <link linkend="char">char</link> const *from);
+<link linkend="GIConv">GIConv</link>              <link linkend="gsf-msole-iconv-open-codepage-for-import">gsf_msole_iconv_open_codepage_for_import</link>
+                                                        (<link linkend="char">char</link> const *to,
+                                                         <link linkend="int">int</link> codepage);
+<link linkend="GIConv">GIConv</link>              <link linkend="gsf-msole-iconv-open-for-export">gsf_msole_iconv_open_for_export</link>     (void);
+<link linkend="GIConv">GIConv</link>              <link linkend="gsf-msole-iconv-open-codepage-for-export">gsf_msole_iconv_open_codepage_for_export</link>
+                                                        (<link linkend="int">int</link> codepage_to);
+<link linkend="GIConv">GIConv</link>              <link linkend="gsf-msole-iconv-open-for-import">gsf_msole_iconv_open_for_import</link>     (<link linkend="int">int</link> codepage);
+<link linkend="int">int</link>                 <link linkend="gsf-msole-iconv-win-codepage">gsf_msole_iconv_win_codepage</link>        (void);
+<link linkend="guint">guint</link>               <link linkend="gsf-msole-codepage-to-lid">gsf_msole_codepage_to_lid</link>           (<link linkend="int">int</link> codepage);
+<link linkend="int">int</link>                 <link linkend="gsf-msole-lid-to-codepage">gsf_msole_lid_to_codepage</link>           (<link linkend="guint">guint</link> lid);
+<link linkend="gchar">gchar</link>*              <link linkend="gsf-msole-lid-to-codepage-str">gsf_msole_lid_to_codepage_str</link>       (<link linkend="guint">guint</link> lid);
+<link linkend="guint">guint</link>               <link linkend="gsf-msole-lid-for-language">gsf_msole_lid_for_language</link>          (<link linkend="char">char</link> const *lang);
+<link linkend="char">char</link>const *         <link linkend="gsf-msole-language-for-lid">gsf_msole_language_for_lid</link>          (<link linkend="guint">guint</link> lid);
+<link linkend="GByteArray">GByteArray</link>*         <link linkend="gsf-msole-inflate">gsf_msole_inflate</link>                   (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="gsf-off-t">gsf_off_t</link> offset);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gsf-MS-OLE2.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfInput">GsfInput</link>
+         +----<link linkend="GsfInfile">GsfInfile</link>
+               +----GsfInfileMSOle
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfOutput">GsfOutput</link>
+         +----<link linkend="GsfOutfile">GsfOutfile</link>
+               +----GsfOutfileMSOle
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="gsf-MS-OLE2.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-MS-OLE2.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfInfileMSOle-struct" role="struct">
+<title>GsfInfileMSOle</title>
+<indexterm zone="GsfInfileMSOle-struct"><primary>GsfInfileMSOle</primary></indexterm><programlisting>typedef struct _GsfInfileMSOle GsfInfileMSOle;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-infile-msole-new" role="function">
+<title>gsf_infile_msole_new ()</title>
+<indexterm zone="gsf-infile-msole-new"><primary>gsf_infile_msole_new</primary></indexterm><programlisting><link linkend="GsfInfile">GsfInfile</link>*          gsf_infile_msole_new                (<link linkend="GsfInput">GsfInput</link> *source,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Opens the root directory of an MS OLE file.
+<note>This adds a reference to <parameter>source</parameter>.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>source</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&nbsp;:</term>
+<listitem><simpara> optional place to store an error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new ole file handler
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-infile-msole-get-class-id" role="function">
+<title>gsf_infile_msole_get_class_id ()</title>
+<indexterm zone="gsf-infile-msole-get-class-id"><primary>gsf_infile_msole_get_class_id</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_infile_msole_get_class_id       (<link linkend="GsfInfileMSOle">GsfInfileMSOle</link> const *ole,
+                                                         <link linkend="guint8">guint8</link> *res);</programlisting>
+<para>
+Retrieves the 16 byte indentifier (often a GUID in MS Windows apps)
+stored within the directory associated with <parameter>ole</parameter> and stores it in <parameter>res</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>ole</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GsfInfileMSOle"><type>GsfInfileMSOle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>res</parameter>&nbsp;:</term>
+<listitem><simpara> 16 byte identifier (often a GUID in MS Windows apps)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE on success
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfOutfileMSOle-struct" role="struct">
+<title>GsfOutfileMSOle</title>
+<indexterm zone="GsfOutfileMSOle-struct"><primary>GsfOutfileMSOle</primary></indexterm><programlisting>typedef struct _GsfOutfileMSOle GsfOutfileMSOle;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-outfile-msole-new" role="function">
+<title>gsf_outfile_msole_new ()</title>
+<indexterm zone="gsf-outfile-msole-new"><primary>gsf_outfile_msole_new</primary></indexterm><programlisting><link linkend="GsfOutfile">GsfOutfile</link>*         gsf_outfile_msole_new               (<link linkend="GsfOutput">GsfOutput</link> *sink);</programlisting>
+<para>
+Creates the root directory of an MS OLE file and manages the addition of
+children.
+</para>
+<para>
+<note>This adds a reference to <parameter>sink</parameter>.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>sink</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GsfOutput"><type>GsfOutput</type></link> to hold the OLE2 file
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new ole file handler.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-msole-new-full" role="function">
+<title>gsf_outfile_msole_new_full ()</title>
+<indexterm zone="gsf-outfile-msole-new-full"><primary>gsf_outfile_msole_new_full</primary></indexterm><programlisting><link linkend="GsfOutfile">GsfOutfile</link>*         gsf_outfile_msole_new_full          (<link linkend="GsfOutput">GsfOutput</link> *sink,
+                                                         <link linkend="guint">guint</link> bb_size,
+                                                         <link linkend="guint">guint</link> sb_size);</programlisting>
+<para>
+Creates the root directory of an MS OLE file and manages the addition of
+children.
+</para>
+<para>
+<note>This adds a reference to <parameter>sink</parameter>.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>sink</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GsfOutput"><type>GsfOutput</type></link> to hold the OLE2 file.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bb_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of large blocks.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sb_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of small blocks.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new ole file handler.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-msole-set-class-id" role="function">
+<title>gsf_outfile_msole_set_class_id ()</title>
+<indexterm zone="gsf-outfile-msole-set-class-id"><primary>gsf_outfile_msole_set_class_id</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_outfile_msole_set_class_id      (<link linkend="GsfOutfileMSOle">GsfOutfileMSOle</link> *ole,
+                                                         <link linkend="guint8">guint8</link> const *clsid);</programlisting>
+<para>
+Write <parameter>clsid</parameter> to the directory associated with <parameter>ole</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>ole</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GsfOutfileMSOle"><type>GsfOutfileMSOle</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>clsid</parameter>&nbsp;:</term>
+<listitem><simpara> 16 byte identifier (often a GUID in MS Windows apps)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE on success.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-metadata-read" role="function">
+<title>gsf_msole_metadata_read ()</title>
+<indexterm zone="gsf-msole-metadata-read"><primary>gsf_msole_metadata_read</primary></indexterm><programlisting><link linkend="GError">GError</link>*             gsf_msole_metadata_read             (<link linkend="GsfInput">GsfInput</link> *in,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> *accum);</programlisting>
+<para>
+Read a stream formated as a set of MS OLE properties from <parameter>in</parameter> and store the
+results in <parameter>accum</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>in</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>accum</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfDocMetaData"><type>GsfDocMetaData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> GError which the caller must free on error.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-metadata-write" role="function">
+<title>gsf_msole_metadata_write ()</title>
+<indexterm zone="gsf-msole-metadata-write"><primary>gsf_msole_metadata_write</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_msole_metadata_write            (<link linkend="GsfOutput">GsfOutput</link> *out,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> const *meta_data,
+                                                         <link linkend="gboolean">gboolean</link> doc_not_component);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>out</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutput"><type>GsfOutput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>meta_data</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfDocMetaData"><type>GsfDocMetaData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>doc_not_component</parameter>&nbsp;:</term>
+<listitem><simpara> a kludge to differentiate DocumentSummary from Summary
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> on success;
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-iconv-open-codepages-for-export" role="function">
+<title>gsf_msole_iconv_open_codepages_for_export ()</title>
+<indexterm zone="gsf-msole-iconv-open-codepages-for-export"><primary>gsf_msole_iconv_open_codepages_for_export</primary></indexterm><programlisting><link linkend="GIConv">GIConv</link>              gsf_msole_iconv_open_codepages_for_export
+                                                        (<link linkend="int">int</link> codepage_to,
+                                                         <link linkend="char">char</link> const *from);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>codepage_to</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>from</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an iconv converter to go from utf8 -> to our best guess at a useful
+	windows codepage.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-iconv-open-codepage-for-import" role="function">
+<title>gsf_msole_iconv_open_codepage_for_import ()</title>
+<indexterm zone="gsf-msole-iconv-open-codepage-for-import"><primary>gsf_msole_iconv_open_codepage_for_import</primary></indexterm><programlisting><link linkend="GIConv">GIConv</link>              gsf_msole_iconv_open_codepage_for_import
+                                                        (<link linkend="char">char</link> const *to,
+                                                         <link linkend="int">int</link> codepage);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>to</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>codepage</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an iconv converter for <parameter>codepage</parameter> -> utf8.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-iconv-open-for-export" role="function">
+<title>gsf_msole_iconv_open_for_export ()</title>
+<indexterm zone="gsf-msole-iconv-open-for-export"><primary>gsf_msole_iconv_open_for_export</primary></indexterm><programlisting><link linkend="GIConv">GIConv</link>              gsf_msole_iconv_open_for_export     (void);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an iconv convert to go from utf8 -> to our best guess at a useful
+	windows codepage.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-iconv-open-codepage-for-export" role="function">
+<title>gsf_msole_iconv_open_codepage_for_export ()</title>
+<indexterm zone="gsf-msole-iconv-open-codepage-for-export"><primary>gsf_msole_iconv_open_codepage_for_export</primary></indexterm><programlisting><link linkend="GIConv">GIConv</link>              gsf_msole_iconv_open_codepage_for_export
+                                                        (<link linkend="int">int</link> codepage_to);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>codepage_to</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an iconv converter to go from utf8 -> to our best guess at a useful
+	windows codepage.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-iconv-open-for-import" role="function">
+<title>gsf_msole_iconv_open_for_import ()</title>
+<indexterm zone="gsf-msole-iconv-open-for-import"><primary>gsf_msole_iconv_open_for_import</primary></indexterm><programlisting><link linkend="GIConv">GIConv</link>              gsf_msole_iconv_open_for_import     (<link linkend="int">int</link> codepage);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>codepage</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an iconv converter for single byte encodings <parameter>codepage</parameter> -> utf8.
+	Attempt to handle the semantics of a specification for multibyte encodings
+	since this is only supposed to be used for single bytes.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-iconv-win-codepage" role="function">
+<title>gsf_msole_iconv_win_codepage ()</title>
+<indexterm zone="gsf-msole-iconv-win-codepage"><primary>gsf_msole_iconv_win_codepage</primary></indexterm><programlisting><link linkend="int">int</link>                 gsf_msole_iconv_win_codepage        (void);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> our best guess at the applicable windows code page based on an
+	environment variable or the current locale.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-codepage-to-lid" role="function">
+<title>gsf_msole_codepage_to_lid ()</title>
+<indexterm zone="gsf-msole-codepage-to-lid"><primary>gsf_msole_codepage_to_lid</primary></indexterm><programlisting><link linkend="guint">guint</link>               gsf_msole_codepage_to_lid           (<link linkend="int">int</link> codepage);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>codepage</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-lid-to-codepage" role="function">
+<title>gsf_msole_lid_to_codepage ()</title>
+<indexterm zone="gsf-msole-lid-to-codepage"><primary>gsf_msole_lid_to_codepage</primary></indexterm><programlisting><link linkend="int">int</link>                 gsf_msole_lid_to_codepage           (<link linkend="guint">guint</link> lid);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>lid</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> our best guess at the codepage for the given language id
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-lid-to-codepage-str" role="function">
+<title>gsf_msole_lid_to_codepage_str ()</title>
+<indexterm zone="gsf-msole-lid-to-codepage-str"><primary>gsf_msole_lid_to_codepage_str</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gsf_msole_lid_to_codepage_str       (<link linkend="guint">guint</link> lid);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>lid</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the Iconv codepage string for the given LID.
+	Return value must be <link linkend="g-free"><function>g_free()</function></link>'d
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-lid-for-language" role="function">
+<title>gsf_msole_lid_for_language ()</title>
+<indexterm zone="gsf-msole-lid-for-language"><primary>gsf_msole_lid_for_language</primary></indexterm><programlisting><link linkend="guint">guint</link>               gsf_msole_lid_for_language          (<link linkend="char">char</link> const *lang);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>lang</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the LID (Language Identifier) for the input language.
+	If lang is <link linkend="null"><literal>null</literal></link>, return 0x0400 ("-none-"), and not 0x0000 ("no proofing")
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-language-for-lid" role="function">
+<title>gsf_msole_language_for_lid ()</title>
+<indexterm zone="gsf-msole-language-for-lid"><primary>gsf_msole_language_for_lid</primary></indexterm><programlisting><link linkend="char">char</link>const *         gsf_msole_language_for_lid          (<link linkend="guint">guint</link> lid);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>lid</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the xx_YY style string (can be just xx or xxx) for the given LID.
+	Return value must not be freed. If the LID is not found, is set to
+	0x0400, or is set to 0x0000, will return "-none-"
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-msole-inflate" role="function">
+<title>gsf_msole_inflate ()</title>
+<indexterm zone="gsf-msole-inflate"><primary>gsf_msole_inflate</primary></indexterm><programlisting><link linkend="GByteArray">GByteArray</link>*         gsf_msole_inflate                   (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="gsf-off-t">gsf_off_t</link> offset);</programlisting>
+<para>
+Decompresses an LZ compressed stream.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> stream to read from
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>offset</parameter>&nbsp;:</term>
+<listitem><simpara> offset into it for start byte of compresse stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A GByteArray that the caller is responsible for freeing
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

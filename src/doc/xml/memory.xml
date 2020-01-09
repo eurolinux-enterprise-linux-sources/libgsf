@@ -1,0 +1,184 @@
+<refentry id="gsf-memory">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-memory.top_of_page">memory</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>memory</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-memory.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfInputMemory"/><anchor id="GsfOutputMemory"/>
+<synopsis>
+                    <link linkend="GsfInputMemory-struct">GsfInputMemory</link>;
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-input-mmap-new">gsf_input_mmap_new</link>                  (<link linkend="char">char</link> const *filename,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-input-memory-new">gsf_input_memory_new</link>                (<link linkend="guint8">guint8</link> const *buf,
+                                                         <link linkend="gsf-off-t">gsf_off_t</link> length,
+                                                         <link linkend="gboolean">gboolean</link> needs_free);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-input-memory-new-clone">gsf_input_memory_new_clone</link>          (<link linkend="guint8">guint8</link> const *buf,
+                                                         <link linkend="gsf-off-t">gsf_off_t</link> length);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-input-memory-new-from-iochannel">gsf_input_memory_new_from_iochannel</link> (<link linkend="GIOChannel">GIOChannel</link> *channel,
+                                                         <link linkend="GError">GError</link> **error);
+                    <link linkend="GsfOutputMemory-struct">GsfOutputMemory</link>;
+const <link linkend="guint8">guint8</link>*       <link linkend="gsf-output-memory-get-bytes">gsf_output_memory_get_bytes</link>         (<link linkend="GsfOutputMemory">GsfOutputMemory</link> *mem);
+<link linkend="GsfOutput">GsfOutput</link>*          <link linkend="gsf-output-memory-new">gsf_output_memory_new</link>               (void);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gsf-memory.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfInput">GsfInput</link>
+         +----GsfInputMemory
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfOutput">GsfOutput</link>
+         +----GsfOutputMemory
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="gsf-memory.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-memory.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfInputMemory-struct" role="struct">
+<title>GsfInputMemory</title>
+<indexterm zone="GsfInputMemory-struct"><primary>GsfInputMemory</primary></indexterm><programlisting>typedef struct _GsfInputMemory GsfInputMemory;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-input-mmap-new" role="function">
+<title>gsf_input_mmap_new ()</title>
+<indexterm zone="gsf-input-mmap-new"><primary>gsf_input_mmap_new</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_input_mmap_new                  (<link linkend="char">char</link> const *filename,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> The file on disk that you want to mmap
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="GError"><type>GError</type></link>, or optionally <link linkend="null"><literal>null</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="GsfInputMemory"><type>GsfInputMemory</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-memory-new" role="function">
+<title>gsf_input_memory_new ()</title>
+<indexterm zone="gsf-input-memory-new"><primary>gsf_input_memory_new</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_input_memory_new                (<link linkend="guint8">guint8</link> const *buf,
+                                                         <link linkend="gsf-off-t">gsf_off_t</link> length,
+                                                         <link linkend="gboolean">gboolean</link> needs_free);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> The input bytes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> The length of <parameter>buf</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>needs_free</parameter>&nbsp;:</term>
+<listitem><simpara> Whether you want this memory to be free'd at object destruction
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="GsfInputMemory"><type>GsfInputMemory</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-memory-new-clone" role="function">
+<title>gsf_input_memory_new_clone ()</title>
+<indexterm zone="gsf-input-memory-new-clone"><primary>gsf_input_memory_new_clone</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_input_memory_new_clone          (<link linkend="guint8">guint8</link> const *buf,
+                                                         <link linkend="gsf-off-t">gsf_off_t</link> length);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> The input bytes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&nbsp;:</term>
+<listitem><simpara> The length of <parameter>buf</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="GsfInputMemory"><type>GsfInputMemory</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-memory-new-from-iochannel" role="function">
+<title>gsf_input_memory_new_from_iochannel ()</title>
+<indexterm zone="gsf-input-memory-new-from-iochannel"><primary>gsf_input_memory_new_from_iochannel</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_input_memory_new_from_iochannel (<link linkend="GIOChannel">GIOChannel</link> *channel,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>channel</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GIOChannel"><type>GIOChannel</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GError"><type>GError</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="GsfInputMemory"><type>GsfInputMemory</type></link> or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfOutputMemory-struct" role="struct">
+<title>GsfOutputMemory</title>
+<indexterm zone="GsfOutputMemory-struct"><primary>GsfOutputMemory</primary></indexterm><programlisting>typedef struct _GsfOutputMemory GsfOutputMemory;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-output-memory-get-bytes" role="function">
+<title>gsf_output_memory_get_bytes ()</title>
+<indexterm zone="gsf-output-memory-get-bytes"><primary>gsf_output_memory_get_bytes</primary></indexterm><programlisting>const <link linkend="guint8">guint8</link>*       gsf_output_memory_get_bytes         (<link linkend="GsfOutputMemory">GsfOutputMemory</link> *mem);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>mem</parameter>&nbsp;:</term>
+<listitem><simpara> the output device.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The data that has been written to <parameter>mem</parameter>, or <link linkend="null"><literal>null</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-output-memory-new" role="function">
+<title>gsf_output_memory_new ()</title>
+<indexterm zone="gsf-output-memory-new"><primary>gsf_output_memory_new</primary></indexterm><programlisting><link linkend="GsfOutput">GsfOutput</link>*          gsf_output_memory_new               (void);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new file or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

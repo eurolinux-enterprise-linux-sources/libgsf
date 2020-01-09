@@ -1,0 +1,181 @@
+<refentry id="gsf-Zip">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-Zip.top_of_page">Zip files</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Zip files</refname>
+<refpurpose>Utilities for reading and writing ZIP/JAR files</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-Zip.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfInfileZip"/><anchor id="GsfOutfileZip"/>
+<synopsis>
+                    <link linkend="GsfInfileZip-struct">GsfInfileZip</link>;
+<link linkend="GsfInfile">GsfInfile</link>*          <link linkend="gsf-infile-zip-new">gsf_infile_zip_new</link>                  (<link linkend="GsfInput">GsfInput</link> *source,
+                                                         <link linkend="GError">GError</link> **err);
+                    <link linkend="GsfOutfileZip-struct">GsfOutfileZip</link>;
+<link linkend="GsfOutfile">GsfOutfile</link>*         <link linkend="gsf-outfile-zip-new">gsf_outfile_zip_new</link>                 (<link linkend="GsfOutput">GsfOutput</link> *sink,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-outfile-zip-set-compression-method">gsf_outfile_zip_set_compression_method</link>
+                                                        (<link linkend="GsfOutfileZip">GsfOutfileZip</link> *zip,
+                                                         <link linkend="GsfZipCompressionMethod">GsfZipCompressionMethod</link> method);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gsf-Zip.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfInput">GsfInput</link>
+         +----<link linkend="GsfInfile">GsfInfile</link>
+               +----GsfInfileZip
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfOutput">GsfOutput</link>
+         +----<link linkend="GsfOutfile">GsfOutfile</link>
+               +----GsfOutfileZip
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="gsf-Zip.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GsfInfileZip--compression-level">compression-level</link>&quot;        <link linkend="gint">gint</link>                  : Read
+  &quot;<link linkend="GsfInfileZip--internal-parent">internal-parent</link>&quot;          <link linkend="GsfInfileZip">GsfInfileZip</link>*         : Write / Construct Only
+  &quot;<link linkend="GsfInfileZip--source">source</link>&quot;                   <link linkend="GsfInput">GsfInput</link>*             : Read / Write / Construct Only
+  &quot;<link linkend="GsfOutfileZip--compression-level">compression-level</link>&quot;        <link linkend="gint">gint</link>                  : Read / Write / Construct Only
+  &quot;<link linkend="GsfOutfileZip--entry-name">entry-name</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GsfOutfileZip--sink">sink</link>&quot;                     <link linkend="GsfOutput">GsfOutput</link>*            : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="gsf-Zip.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="GsfInfile"><type>GsfInfile</type></link> and <link linkend="GsfOutfile"><type>GsfOutfile</type></link> support for zip files.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-Zip.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfInfileZip-struct" role="struct">
+<title>GsfInfileZip</title>
+<indexterm zone="GsfInfileZip-struct"><primary>GsfInfileZip</primary></indexterm><programlisting>typedef struct _GsfInfileZip GsfInfileZip;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-infile-zip-new" role="function">
+<title>gsf_infile_zip_new ()</title>
+<indexterm zone="gsf-infile-zip-new"><primary>gsf_infile_zip_new</primary></indexterm><programlisting><link linkend="GsfInfile">GsfInfile</link>*          gsf_infile_zip_new                  (<link linkend="GsfInput">GsfInput</link> *source,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Opens the root directory of a Zip file.
+<note>This adds a reference to <parameter>source</parameter>.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>source</parameter>&nbsp;:</term>
+<listitem><simpara> A base <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="GError"><type>GError</type></link>, optionally <link linkend="null"><literal>null</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new zip file handler
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfOutfileZip-struct" role="struct">
+<title>GsfOutfileZip</title>
+<indexterm zone="GsfOutfileZip-struct"><primary>GsfOutfileZip</primary></indexterm><programlisting>typedef struct _GsfOutfileZip GsfOutfileZip;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-outfile-zip-new" role="function">
+<title>gsf_outfile_zip_new ()</title>
+<indexterm zone="gsf-outfile-zip-new"><primary>gsf_outfile_zip_new</primary></indexterm><programlisting><link linkend="GsfOutfile">GsfOutfile</link>*         gsf_outfile_zip_new                 (<link linkend="GsfOutput">GsfOutput</link> *sink,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Creates the root directory of a Zip file and manages the addition of
+children.
+</para>
+<para>
+<note>This adds a reference to <parameter>sink</parameter>.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>sink</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GsfOutput"><type>GsfOutput</type></link> to hold the ZIP file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&nbsp;:</term>
+<listitem><simpara> Location to store error, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>; currently unused.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new zip file handler
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-zip-set-compression-method" role="function">
+<title>gsf_outfile_zip_set_compression_method ()</title>
+<indexterm zone="gsf-outfile-zip-set-compression-method"><primary>gsf_outfile_zip_set_compression_method</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_outfile_zip_set_compression_method
+                                                        (<link linkend="GsfOutfileZip">GsfOutfileZip</link> *zip,
+                                                         <link linkend="GsfZipCompressionMethod">GsfZipCompressionMethod</link> method);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>zip</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>method</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="gsf-Zip.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GsfInfileZip--compression-level"><title>The <literal>&quot;compression-level&quot;</literal> property</title>
+<indexterm zone="GsfInfileZip--compression-level"><primary>GsfInfileZip:compression-level</primary></indexterm><programlisting>  &quot;compression-level&quot;        <link linkend="gint">gint</link>                  : Read</programlisting>
+<para>The level of compression used, zero meaning none.</para><para>Allowed values: [0,10]</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GsfInfileZip--internal-parent"><title>The <literal>&quot;internal-parent&quot;</literal> property</title>
+<indexterm zone="GsfInfileZip--internal-parent"><primary>GsfInfileZip:internal-parent</primary></indexterm><programlisting>  &quot;internal-parent&quot;          <link linkend="GsfInfileZip">GsfInfileZip</link>*         : Write / Construct Only</programlisting>
+<para>Internal use only.</para></refsect2>
+<refsect2 id="GsfInfileZip--source"><title>The <literal>&quot;source&quot;</literal> property</title>
+<indexterm zone="GsfInfileZip--source"><primary>GsfInfileZip:source</primary></indexterm><programlisting>  &quot;source&quot;                   <link linkend="GsfInput">GsfInput</link>*             : Read / Write / Construct Only</programlisting>
+<para>The archive being interpreted.</para></refsect2>
+<refsect2 id="GsfOutfileZip--compression-level"><title>The <literal>&quot;compression-level&quot;</literal> property</title>
+<indexterm zone="GsfOutfileZip--compression-level"><primary>GsfOutfileZip:compression-level</primary></indexterm><programlisting>  &quot;compression-level&quot;        <link linkend="gint">gint</link>                  : Read / Write / Construct Only</programlisting>
+<para>The level of compression used, zero meaning none.</para><para>Allowed values: [0,10]</para>
+<para>Default value: 8</para>
+</refsect2>
+<refsect2 id="GsfOutfileZip--entry-name"><title>The <literal>&quot;entry-name&quot;</literal> property</title>
+<indexterm zone="GsfOutfileZip--entry-name"><primary>GsfOutfileZip:entry-name</primary></indexterm><programlisting>  &quot;entry-name&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>The filename of this member in the archive without path.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GsfOutfileZip--sink"><title>The <literal>&quot;sink&quot;</literal> property</title>
+<indexterm zone="GsfOutfileZip--sink"><primary>GsfOutfileZip:sink</primary></indexterm><programlisting>  &quot;sink&quot;                     <link linkend="GsfOutput">GsfOutput</link>*            : Read / Write / Construct Only</programlisting>
+<para>Where the archive is written.</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

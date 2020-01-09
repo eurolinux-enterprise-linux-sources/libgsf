@@ -1,0 +1,121 @@
+<refentry id="gsf-Output-to-unstructured-files">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-Output-to-unstructured-files.top_of_page">Output to unstructured files</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Output to unstructured files</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-Output-to-unstructured-files.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfOutput"/>
+<synopsis>
+                    <link linkend="GsfOutput-struct">GsfOutput</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-output-set-name-from-filename">gsf_output_set_name_from_filename</link>   (<link linkend="GsfOutput">GsfOutput</link> *output,
+                                                         <link linkend="char">char</link> const *filename);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gsf-Output-to-unstructured-files.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GsfOutput
+         +----<link linkend="GsfOutfile">GsfOutfile</link>
+         +----<link linkend="GsfOutputBzip">GsfOutputBzip</link>
+         +----<link linkend="GsfOutputCsv">GsfOutputCsv</link>
+         +----<link linkend="GsfOutputGZip">GsfOutputGZip</link>
+         +----<link linkend="GsfOutputIconv">GsfOutputIconv</link>
+         +----<link linkend="GsfOutputIOChannel">GsfOutputIOChannel</link>
+         +----<link linkend="GsfOutputMemory">GsfOutputMemory</link>
+         +----<link linkend="GsfOutputStdio">GsfOutputStdio</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="gsf-Output-to-unstructured-files.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GsfOutput--is-closed">is-closed</link>&quot;                <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="GsfOutput--name">name</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="GsfOutput--position">position</link>&quot;                 <link linkend="gint64">gint64</link>                : Read
+  &quot;<link linkend="GsfOutput--size">size</link>&quot;                     <link linkend="gint64">gint64</link>                : Read
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="gsf-Output-to-unstructured-files.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-Output-to-unstructured-files.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfOutput-struct" role="struct">
+<title>GsfOutput</title>
+<indexterm zone="GsfOutput-struct"><primary>GsfOutput</primary></indexterm><programlisting>typedef struct _GsfOutput GsfOutput;</programlisting>
+<para>
+Class representing an output stream, counterpart to <link linkend="GsfInput"><type>GsfInput</type></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-output-set-name-from-filename" role="function">
+<title>gsf_output_set_name_from_filename ()</title>
+<indexterm zone="gsf-output-set-name-from-filename"><primary>gsf_output_set_name_from_filename</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_output_set_name_from_filename   (<link linkend="GsfOutput">GsfOutput</link> *output,
+                                                         <link linkend="char">char</link> const *filename);</programlisting>
+<para>
+<note>This is a utility routine that should only be used by derived
+outputs.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>output</parameter>&nbsp;:</term>
+<listitem><simpara> the output stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> the (fs-sys encoded) filename
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the assignment was ok.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="gsf-Output-to-unstructured-files.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GsfOutput--is-closed"><title>The <literal>&quot;is-closed&quot;</literal> property</title>
+<indexterm zone="GsfOutput--is-closed"><primary>GsfOutput:is-closed</primary></indexterm><programlisting>  &quot;is-closed&quot;                <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>Whether the Output is Closed.</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="GsfOutput--name"><title>The <literal>&quot;name&quot;</literal> property</title>
+<indexterm zone="GsfOutput--name"><primary>GsfOutput:name</primary></indexterm><programlisting>  &quot;name&quot;                     <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>The Output's Name.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GsfOutput--position"><title>The <literal>&quot;position&quot;</literal> property</title>
+<indexterm zone="GsfOutput--position"><primary>GsfOutput:position</primary></indexterm><programlisting>  &quot;position&quot;                 <link linkend="gint64">gint64</link>                : Read</programlisting>
+<para>The Output's Current Position.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GsfOutput--size"><title>The <literal>&quot;size&quot;</literal> property</title>
+<indexterm zone="GsfOutput--size"><primary>GsfOutput:size</primary></indexterm><programlisting>  &quot;size&quot;                     <link linkend="gint64">gint64</link>                : Read</programlisting>
+<para>The Output's Size.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

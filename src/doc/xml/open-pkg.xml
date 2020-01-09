@@ -1,0 +1,508 @@
+<refentry id="gsf-Open-Package-(ECMA-376)-">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-Open-Package-(ECMA-376)-.top_of_page">Open Package (ECMA 376)</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Open Package (ECMA 376)</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-Open-Package-(ECMA-376)-.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link>;
+                    <link linkend="GsfOpenPkgRels">GsfOpenPkgRels</link>;
+<link linkend="void">void</link>                (<link linkend="GsfOpenPkgIter">*GsfOpenPkgIter</link>)                   (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="char">char</link>const   *       <link linkend="gsf-open-pkg-rel-get-target">gsf_open_pkg_rel_get_target</link>         (<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel);
+<link linkend="char">char</link>const   *       <link linkend="gsf-open-pkg-rel-get-type">gsf_open_pkg_rel_get_type</link>           (<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-open-pkg-rel-is-extern">gsf_open_pkg_rel_is_extern</link>          (<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel);
+<link linkend="void">void</link>                <link linkend="gsf-open-pkg-foreach-rel">gsf_open_pkg_foreach_rel</link>            (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="GsfOpenPkgIter">GsfOpenPkgIter</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-open-pkg-open-rel">gsf_open_pkg_open_rel</link>               (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link>*      <link linkend="gsf-open-pkg-lookup-rel-by-id">gsf_open_pkg_lookup_rel_by_id</link>       (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *id);
+<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link>*      <link linkend="gsf-open-pkg-lookup-rel-by-type">gsf_open_pkg_lookup_rel_by_type</link>     (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *type);
+<link linkend="gint">gint</link>                <link linkend="gsf-open-pkg-error-id">gsf_open_pkg_error_id</link>               (void);
+                    <link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link>;
+<link linkend="GsfOutfile">GsfOutfile</link>*         <link linkend="gsf-outfile-open-pkg-new">gsf_outfile_open_pkg_new</link>            (<link linkend="GsfOutfile">GsfOutfile</link> *sink);
+<link linkend="void">void</link>                <link linkend="gsf-outfile-open-pkg-set-sink">gsf_outfile_open_pkg_set_sink</link>       (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *open_pkg,
+                                                         <link linkend="GsfOutput">GsfOutput</link> *sink);
+<link linkend="void">void</link>                <link linkend="gsf-outfile-open-pkg-set-content-type">gsf_outfile_open_pkg_set_content_type</link>
+                                                        (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *open_pkg,
+                                                         <link linkend="char">char</link> const *content_type);
+<link linkend="char">char</link>const *         <link linkend="gsf-outfile-open-pkg-relate">gsf_outfile_open_pkg_relate</link>         (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *child,
+                                                         <link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *parent,
+                                                         <link linkend="char">char</link> const *type);
+<link linkend="GsfOutput">GsfOutput</link>*          <link linkend="gsf-outfile-open-pkg-add-rel">gsf_outfile_open_pkg_add_rel</link>        (<link linkend="GsfOutfile">GsfOutfile</link> *dir,
+                                                         <link linkend="char">char</link> const *name,
+                                                         <link linkend="char">char</link> const *content_type,
+                                                         <link linkend="GsfOutfile">GsfOutfile</link> *parent,
+                                                         <link linkend="char">char</link> const *type);
+<link linkend="char">char</link>const *         <link linkend="gsf-outfile-open-pkg-add-extern-rel">gsf_outfile_open_pkg_add_extern_rel</link> (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *parent,
+                                                         <link linkend="char">char</link> const *target,
+                                                         <link linkend="char">char</link> const *content_type);
+
+
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-open-pkg-open-rel-by-id">gsf_open_pkg_open_rel_by_id</link>         (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-open-pkg-open-rel-by-type">gsf_open_pkg_open_rel_by_type</link>       (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *type,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GError">GError</link>*             <link linkend="gsf-open-pkg-parse-rel-by-id">gsf_open_pkg_parse_rel_by_id</link>        (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GsfXMLInNode">GsfXMLInNode</link> const *dtd,
+                                                         <link linkend="GsfXMLInNS">GsfXMLInNS</link> const *ns);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-open-pkg-get-rel-by-type">gsf_open_pkg_get_rel_by_type</link>        (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *type);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-open-pkg-get-rel-by-id">gsf_open_pkg_get_rel_by_id</link>          (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *id);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gsf-Open-Package-(ECMA-376)-.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-Open-Package-(ECMA-376)-.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfOpenPkgRel" role="struct">
+<title>GsfOpenPkgRel</title>
+<indexterm zone="GsfOpenPkgRel"><primary>GsfOpenPkgRel</primary></indexterm><programlisting>typedef struct _GsfOpenPkgRel GsfOpenPkgRel;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfOpenPkgRels" role="struct">
+<title>GsfOpenPkgRels</title>
+<indexterm zone="GsfOpenPkgRels"><primary>GsfOpenPkgRels</primary></indexterm><programlisting>typedef struct _GsfOpenPkgRels GsfOpenPkgRels;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfOpenPkgIter" role="function">
+<title>GsfOpenPkgIter ()</title>
+<indexterm zone="GsfOpenPkgIter"><primary>GsfOpenPkgIter</primary></indexterm><programlisting><link linkend="void">void</link>                (*GsfOpenPkgIter)                   (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rel</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-rel-get-target" role="function">
+<title>gsf_open_pkg_rel_get_target ()</title>
+<indexterm zone="gsf-open-pkg-rel-get-target"><primary>gsf_open_pkg_rel_get_target</primary></indexterm><programlisting><link linkend="char">char</link>const   *       gsf_open_pkg_rel_get_target         (<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rel</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOpenPkgRel"><type>GsfOpenPkgRel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> const pointer to <parameter>rel</parameter>'s target.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-rel-get-type" role="function">
+<title>gsf_open_pkg_rel_get_type ()</title>
+<indexterm zone="gsf-open-pkg-rel-get-type"><primary>gsf_open_pkg_rel_get_type</primary></indexterm><programlisting><link linkend="char">char</link>const   *       gsf_open_pkg_rel_get_type           (<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rel</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOpenPkgRel"><type>GsfOpenPkgRel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> const pointer to <parameter>rel</parameter>'s type.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-rel-is-extern" role="function">
+<title>gsf_open_pkg_rel_is_extern ()</title>
+<indexterm zone="gsf-open-pkg-rel-is-extern"><primary>gsf_open_pkg_rel_is_extern</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_open_pkg_rel_is_extern          (<link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>rel</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOpenPkgRel"><type>GsfOpenPkgRel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>rel</parameter> has mode 'External'
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-foreach-rel" role="function">
+<title>gsf_open_pkg_foreach_rel ()</title>
+<indexterm zone="gsf-open-pkg-foreach-rel"><primary>gsf_open_pkg_foreach_rel</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_open_pkg_foreach_rel            (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="GsfOpenPkgIter">GsfOpenPkgIter</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+New in 1.14.9
+</para>
+<para>
+Walks each relationship associated with <parameter>opkg</parameter> and calls <parameter>func</parameter> with <parameter>user_data</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOpenPkgIter"><type>GsfOpenPkgIter</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> gpointer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-open-rel" role="function">
+<title>gsf_open_pkg_open_rel ()</title>
+<indexterm zone="gsf-open-pkg-open-rel"><primary>gsf_open_pkg_open_rel</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_open_pkg_open_rel               (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link> const *rel,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rel</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOpenPkgRel"><type>GsfOpenPkgRel</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GError"><type>GError</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="GsfInput"><type>GsfInput</type></link> which the called needs to unref, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> and sets <parameter>err</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-lookup-rel-by-id" role="function">
+<title>gsf_open_pkg_lookup_rel_by_id ()</title>
+<indexterm zone="gsf-open-pkg-lookup-rel-by-id"><primary>gsf_open_pkg_lookup_rel_by_id</primary></indexterm><programlisting><link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link>*      gsf_open_pkg_lookup_rel_by_id       (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *id);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-lookup-rel-by-type" role="function">
+<title>gsf_open_pkg_lookup_rel_by_type ()</title>
+<indexterm zone="gsf-open-pkg-lookup-rel-by-type"><primary>gsf_open_pkg_lookup_rel_by_type</primary></indexterm><programlisting><link linkend="GsfOpenPkgRel">GsfOpenPkgRel</link>*      gsf_open_pkg_lookup_rel_by_type     (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *type);</programlisting>
+<para>
+New in 1.14.6
+</para>
+<para>
+Finds _a_ relation of <parameter>opkg</parameter> with <parameter>type</parameter> (no order is guaranteed)</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> target
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="GsfOpenPkgRel"><type>GsfOpenPkgRel</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-error-id" role="function">
+<title>gsf_open_pkg_error_id ()</title>
+<indexterm zone="gsf-open-pkg-error-id"><primary>gsf_open_pkg_error_id</primary></indexterm><programlisting><link linkend="gint">gint</link>                gsf_open_pkg_error_id               (void);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfOutfileOpenPkg" role="struct">
+<title>GsfOutfileOpenPkg</title>
+<indexterm zone="GsfOutfileOpenPkg"><primary>GsfOutfileOpenPkg</primary></indexterm><programlisting>typedef struct _GsfOutfileOpenPkg GsfOutfileOpenPkg;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-outfile-open-pkg-new" role="function">
+<title>gsf_outfile_open_pkg_new ()</title>
+<indexterm zone="gsf-outfile-open-pkg-new"><primary>gsf_outfile_open_pkg_new</primary></indexterm><programlisting><link linkend="GsfOutfile">GsfOutfile</link>*         gsf_outfile_open_pkg_new            (<link linkend="GsfOutfile">GsfOutfile</link> *sink);</programlisting>
+<para>
+Convenience routine to create a GsfOutfileOpenPkg inside <parameter>sink</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>sink</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfile"><type>GsfOutfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a GsfOutfile that the caller is responsible for.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-open-pkg-set-sink" role="function">
+<title>gsf_outfile_open_pkg_set_sink ()</title>
+<indexterm zone="gsf-outfile-open-pkg-set-sink"><primary>gsf_outfile_open_pkg_set_sink</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_outfile_open_pkg_set_sink       (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *open_pkg,
+                                                         <link linkend="GsfOutput">GsfOutput</link> *sink);</programlisting>
+<para>
+Assigns a GsfOutput (<parameter>sink</parameter>) to store the package into.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>open_pkg</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfileOpenPkg"><type>GsfOutfileOpenPkg</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sink</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutput"><type>GsfOutput</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-open-pkg-set-content-type" role="function">
+<title>gsf_outfile_open_pkg_set_content_type ()</title>
+<indexterm zone="gsf-outfile-open-pkg-set-content-type"><primary>gsf_outfile_open_pkg_set_content_type</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_outfile_open_pkg_set_content_type
+                                                        (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *open_pkg,
+                                                         <link linkend="char">char</link> const *content_type);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>open_pkg</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfileOpenPkg"><type>GsfOutfileOpenPkg</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>content_type</parameter>&nbsp;:</term>
+<listitem><simpara> 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-open-pkg-relate" role="function">
+<title>gsf_outfile_open_pkg_relate ()</title>
+<indexterm zone="gsf-outfile-open-pkg-relate"><primary>gsf_outfile_open_pkg_relate</primary></indexterm><programlisting><link linkend="char">char</link>const *         gsf_outfile_open_pkg_relate         (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *child,
+                                                         <link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *parent,
+                                                         <link linkend="char">char</link> const *type);</programlisting>
+<para>
+Create a relationship between <parameter>child</parameter> and <parameter>parent</parameter> of <parameter>type</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>child</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfileOpenPkg"><type>GsfOutfileOpenPkg</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfileOpenPkg"><type>GsfOutfileOpenPkg</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> target type
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the relID which the caller does not own but will live as long as
+	<parameter>parent</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-open-pkg-add-rel" role="function">
+<title>gsf_outfile_open_pkg_add_rel ()</title>
+<indexterm zone="gsf-outfile-open-pkg-add-rel"><primary>gsf_outfile_open_pkg_add_rel</primary></indexterm><programlisting><link linkend="GsfOutput">GsfOutput</link>*          gsf_outfile_open_pkg_add_rel        (<link linkend="GsfOutfile">GsfOutfile</link> *dir,
+                                                         <link linkend="char">char</link> const *name,
+                                                         <link linkend="char">char</link> const *content_type,
+                                                         <link linkend="GsfOutfile">GsfOutfile</link> *parent,
+                                                         <link linkend="char">char</link> const *type);</programlisting>
+<para>
+A convenience wrapper to create a child in <parameter>dir</parameter> of <parameter>content_type</parameter> then create
+a <parameter>type</parameter> relation to <parameter>parent</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dir</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfile"><type>GsfOutfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> target name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>content_type</parameter>&nbsp;:</term>
+<listitem><simpara> non-<link linkend="NULL:CAPS"><literal>NULL</literal></link> content type
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfile"><type>GsfOutfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> target type
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new part.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-outfile-open-pkg-add-extern-rel" role="function">
+<title>gsf_outfile_open_pkg_add_extern_rel ()</title>
+<indexterm zone="gsf-outfile-open-pkg-add-extern-rel"><primary>gsf_outfile_open_pkg_add_extern_rel</primary></indexterm><programlisting><link linkend="char">char</link>const *         gsf_outfile_open_pkg_add_extern_rel (<link linkend="GsfOutfileOpenPkg">GsfOutfileOpenPkg</link> *parent,
+                                                         <link linkend="char">char</link> const *target,
+                                                         <link linkend="char">char</link> const *content_type);</programlisting>
+<para>
+Add an external relation to <parameter>parent</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfileOpenPkg"><type>GsfOutfileOpenPkg</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>target</parameter>&nbsp;:</term>
+<listitem><simpara> target type
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>content_type</parameter>&nbsp;:</term>
+<listitem><simpara> target content
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The id of the relation.  The string is managed by the parent and
+	should not be changed or freed by the caller.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-open-rel-by-id" role="function">
+<title>gsf_open_pkg_open_rel_by_id ()</title>
+<indexterm zone="gsf-open-pkg-open-rel-by-id"><primary>gsf_open_pkg_open_rel_by_id</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_open_pkg_open_rel_by_id         (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+New in 1.14.7
+</para>
+<para>
+Open <parameter>opkg</parameter>'s relation <parameter>id</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> target id
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&nbsp;:</term>
+<listitem><simpara> optionally <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new GsfInput or <link linkend="NULL:CAPS"><literal>NULL</literal></link>, and sets <parameter>err</parameter> if possible.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-open-rel-by-type" role="function">
+<title>gsf_open_pkg_open_rel_by_type ()</title>
+<indexterm zone="gsf-open-pkg-open-rel-by-type"><primary>gsf_open_pkg_open_rel_by_type</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_open_pkg_open_rel_by_type       (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *type,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+New in 1.14.9
+</para>
+<para>
+Open one of <parameter>opkg</parameter>'s relationships with type=<parameter>type</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> target type
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&nbsp;:</term>
+<listitem><simpara> optionally <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new GsfInput or <link linkend="NULL:CAPS"><literal>NULL</literal></link>, and sets <parameter>err</parameter> if possible.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-parse-rel-by-id" role="function">
+<title>gsf_open_pkg_parse_rel_by_id ()</title>
+<indexterm zone="gsf-open-pkg-parse-rel-by-id"><primary>gsf_open_pkg_parse_rel_by_id</primary></indexterm><programlisting><link linkend="GError">GError</link>*             gsf_open_pkg_parse_rel_by_id        (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GsfXMLInNode">GsfXMLInNode</link> const *dtd,
+                                                         <link linkend="GsfXMLInNS">GsfXMLInNS</link> const *ns);</programlisting>
+<para>
+Convenience function to parse a related part.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xin</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLIn"><type>GsfXMLIn</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> target id
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dtd</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInNode"><type>GsfXMLInNode</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ns</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInNS"><type>GsfXMLInNS</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> NULL on success or a GError which callerss need to free on failure.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-get-rel-by-type" role="function">
+<title>gsf_open_pkg_get_rel_by_type ()</title>
+<indexterm zone="gsf-open-pkg-get-rel-by-type"><primary>gsf_open_pkg_get_rel_by_type</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_open_pkg_get_rel_by_type        (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *type);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-open-pkg-get-rel-by-id" role="function">
+<title>gsf_open_pkg_get_rel_by_id ()</title>
+<indexterm zone="gsf-open-pkg-get-rel-by-id"><primary>gsf_open_pkg_get_rel_by_id</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_open_pkg_get_rel_by_id          (<link linkend="GsfInput">GsfInput</link> *opkg,
+                                                         <link linkend="char">char</link> const *id);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>opkg</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,170 @@
+<refentry id="gsf-blobs">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-blobs.top_of_page">GsfBlob</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GsfBlob</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-blobs.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfBlob"/><anchor id="GsfStructuredBlob"/>
+<synopsis>
+                    <link linkend="GsfBlob-struct">GsfBlob</link>;
+                    <link linkend="GsfBlobClass">GsfBlobClass</link>;
+                    <link linkend="GsfStructuredBlob-struct">GsfStructuredBlob</link>;
+<link linkend="GsfBlob">GsfBlob</link>*            <link linkend="gsf-blob-new">gsf_blob_new</link>                        (<link linkend="gsize">gsize</link> size,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data_to_copy,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gsize">gsize</link>               <link linkend="gsf-blob-get-size">gsf_blob_get_size</link>                   (<link linkend="GsfBlob">GsfBlob</link> const *blob);
+<link linkend="gconstpointer">gconstpointer</link>       <link linkend="gsf-blob-peek-data">gsf_blob_peek_data</link>                  (<link linkend="GsfBlob">GsfBlob</link> const *blob);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-structured-blob-write">gsf_structured_blob_write</link>           (<link linkend="GsfStructuredBlob">GsfStructuredBlob</link> *blob,
+                                                         <link linkend="GsfOutfile">GsfOutfile</link> *container);
+<link linkend="GsfStructuredBlob">GsfStructuredBlob</link>*  <link linkend="gsf-structured-blob-read">gsf_structured_blob_read</link>            (<link linkend="GsfInput">GsfInput</link> *input);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gsf-blobs.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-blobs.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfBlob-struct" role="struct">
+<title>GsfBlob</title>
+<indexterm zone="GsfBlob-struct"><primary>GsfBlob</primary></indexterm><programlisting>typedef struct _GsfBlob GsfBlob;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfBlobClass" role="struct">
+<title>GsfBlobClass</title>
+<indexterm zone="GsfBlobClass"><primary>GsfBlobClass</primary></indexterm><programlisting>typedef struct {
+	GObjectClass parent_class;
+} GsfBlobClass;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfStructuredBlob-struct" role="struct">
+<title>GsfStructuredBlob</title>
+<indexterm zone="GsfStructuredBlob-struct"><primary>GsfStructuredBlob</primary></indexterm><programlisting>typedef struct _GsfStructuredBlob GsfStructuredBlob;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-blob-new" role="function">
+<title>gsf_blob_new ()</title>
+<indexterm zone="gsf-blob-new"><primary>gsf_blob_new</primary></indexterm><programlisting><link linkend="GsfBlob">GsfBlob</link>*            gsf_blob_new                        (<link linkend="gsize">gsize</link> size,
+                                                         <link linkend="gconstpointer">gconstpointer</link> data_to_copy,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+Creates a new <link linkend="GsfBlob"><type>GsfBlob</type></link> object to hold the specified data.  The blob can then
+be used as a facility for reference-counting for the data.  The data is
+copied internally, so the blob does not hold references to external chunks
+of memory.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> Size of the data in bytes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data_to_copy</parameter>&nbsp;:</term>
+<listitem><simpara> Data which will be copied into the blob, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if <parameter>size</parameter> is zero.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> location to store error, or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly-created <link linkend="GsfBlob"><type>GsfBlob</type></link>, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if the data could not be copied.
+
+Error domain: <link linkend="GSF-ERROR:CAPS"><type>GSF_ERROR</type></link>
+
+Possible errors: <link linkend="GSF-ERROR-OUT-OF-MEMORY:CAPS"><type>GSF_ERROR_OUT_OF_MEMORY</type></link> if the <parameter>data_to_copy</parameter> could not be copied.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-blob-get-size" role="function">
+<title>gsf_blob_get_size ()</title>
+<indexterm zone="gsf-blob-get-size"><primary>gsf_blob_get_size</primary></indexterm><programlisting><link linkend="gsize">gsize</link>               gsf_blob_get_size                   (<link linkend="GsfBlob">GsfBlob</link> const *blob);</programlisting>
+<para>
+Queries the size in bytes of the data stored in the blob.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>blob</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="GsfBlob"><type>GsfBlob</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Size in bytes, or 0 if the data is <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-blob-peek-data" role="function">
+<title>gsf_blob_peek_data ()</title>
+<indexterm zone="gsf-blob-peek-data"><primary>gsf_blob_peek_data</primary></indexterm><programlisting><link linkend="gconstpointer">gconstpointer</link>       gsf_blob_peek_data                  (<link linkend="GsfBlob">GsfBlob</link> const *blob);</programlisting>
+<para>
+Queries a pointer to the data stored in the blob.  This does not copy the data
+for you; it returns a pointer to the actual buffer which the blob uses internally,
+so you should not free this buffer on your own.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>blob</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="GsfBlob"><type>GsfBlob</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Pointer to the data stored in the blob, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> if the size
+of the data is zero.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-structured-blob-write" role="function">
+<title>gsf_structured_blob_write ()</title>
+<indexterm zone="gsf-structured-blob-write"><primary>gsf_structured_blob_write</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_structured_blob_write           (<link linkend="GsfStructuredBlob">GsfStructuredBlob</link> *blob,
+                                                         <link linkend="GsfOutfile">GsfOutfile</link> *container);</programlisting>
+<para>
+Dumps structured blob <parameter>blob</parameter> onto the <parameter>container</parameter>.  Will fail if the output is
+not an Outfile and blob has multiple streams.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>blob</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfStructuredBlob"><type>GsfStructuredBlob</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>container</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutfile"><type>GsfOutfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> on success.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-structured-blob-read" role="function">
+<title>gsf_structured_blob_read ()</title>
+<indexterm zone="gsf-structured-blob-read"><primary>gsf_structured_blob_read</primary></indexterm><programlisting><link linkend="GsfStructuredBlob">GsfStructuredBlob</link>*  gsf_structured_blob_read            (<link linkend="GsfInput">GsfInput</link> *input);</programlisting>
+<para>
+Create a tree of binary blobs with unknown content from a <link linkend="GsfInput"><type>GsfInput</type></link> or
+<link linkend="GsfInfile"><type>GsfInfile</type></link> and store it in a newly created <link linkend="GsfStructuredBlob"><type>GsfStructuredBlob</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> An input (potentially a GsfInfile) holding the blob
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new <link linkend="GsfStructuredBlob"><type>GsfStructuredBlob</type></link> object which the caller is responsible for.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

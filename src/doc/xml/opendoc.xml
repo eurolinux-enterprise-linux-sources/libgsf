@@ -1,0 +1,103 @@
+<refentry id="gsf-OASIS-Open-Document">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-OASIS-Open-Document.top_of_page">OASIS Open Document</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>OASIS Open Document</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-OASIS-Open-Document.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="GError">GError</link>*             <link linkend="gsf-opendoc-metadata-read">gsf_opendoc_metadata_read</link>           (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> *md);
+<link linkend="void">void</link>                <link linkend="gsf-opendoc-metadata-subtree">gsf_opendoc_metadata_subtree</link>        (<link linkend="GsfXMLIn">GsfXMLIn</link> *doc,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> *md);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-opendoc-metadata-write">gsf_opendoc_metadata_write</link>          (<link linkend="GsfXMLOut">GsfXMLOut</link> *output,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> const *md);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gsf-OASIS-Open-Document.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-OASIS-Open-Document.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="gsf-opendoc-metadata-read" role="function">
+<title>gsf_opendoc_metadata_read ()</title>
+<indexterm zone="gsf-opendoc-metadata-read"><primary>gsf_opendoc_metadata_read</primary></indexterm><programlisting><link linkend="GError">GError</link>*             gsf_opendoc_metadata_read           (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> *md);</programlisting>
+<para>
+Read an OpenDocument metadata stream from <parameter>input</parameter> and store the properties
+into <parameter>md</parameter>.  Overwrite any existing properties with the same id.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>md</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfDocMetaData"><type>GsfDocMetaData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a GError if there is a problem.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-opendoc-metadata-subtree" role="function">
+<title>gsf_opendoc_metadata_subtree ()</title>
+<indexterm zone="gsf-opendoc-metadata-subtree"><primary>gsf_opendoc_metadata_subtree</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_opendoc_metadata_subtree        (<link linkend="GsfXMLIn">GsfXMLIn</link> *doc,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> *md);</programlisting>
+<para>
+Extend <parameter>xin</parameter> so that it can parse a subtree in OpenDoc metadata format</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>doc</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInDoc"><type>GsfXMLInDoc</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>md</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfDocMetaData"><type>GsfDocMetaData</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-opendoc-metadata-write" role="function">
+<title>gsf_opendoc_metadata_write ()</title>
+<indexterm zone="gsf-opendoc-metadata-write"><primary>gsf_opendoc_metadata_write</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_opendoc_metadata_write          (<link linkend="GsfXMLOut">GsfXMLOut</link> *output,
+                                                         <link linkend="GsfDocMetaData">GsfDocMetaData</link> const *md);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>output</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>md</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

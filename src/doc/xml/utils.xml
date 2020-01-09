@@ -1,0 +1,1401 @@
+<refentry id="gsf-utils">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-utils.top_of_page">utils</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>utils</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-utils.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>                <link linkend="gsf-init">gsf_init</link>                            (void);
+<link linkend="void">void</link>                <link linkend="gsf-shutdown">gsf_shutdown</link>                        (void);
+<link linkend="void">void</link>                <link linkend="gsf-init-dynamic">gsf_init_dynamic</link>                    (<link linkend="GTypeModule">GTypeModule</link> *module);
+<link linkend="void">void</link>                <link linkend="gsf-shutdown-dynamic">gsf_shutdown_dynamic</link>                (<link linkend="GTypeModule">GTypeModule</link> *module);
+extern              int <link linkend="libgsf-major-version">libgsf_major_version</link>;
+extern              int <link linkend="libgsf-minor-version">libgsf_minor_version</link>;
+extern              int <link linkend="libgsf-micro-version">libgsf_micro_version</link>;
+
+#define             <link linkend="GSF-CLASS:CAPS">GSF_CLASS</link>                           (name, prefix, class_init, instance_init, parent)
+#define             <link linkend="GSF-CLASS-FULL:CAPS">GSF_CLASS_FULL</link>                      (name, prefix, base_init, base_finalize,
+                                                         		       class_init, class_finalize, instance_init, parent_type,
+                                                         		       abstract, interface_decl)
+#define             <link linkend="GSF-CLASS-ABSTRACT:CAPS">GSF_CLASS_ABSTRACT</link>                  (name, prefix, class_init, instance_init, parent)
+#define             <link linkend="GSF-INTERFACE:CAPS">GSF_INTERFACE</link>                       (init_func, iface_type)
+#define             <link linkend="GSF-INTERFACE-FULL:CAPS">GSF_INTERFACE_FULL</link>                  (type, init_func, iface_type)
+#define             <link linkend="GSF-DYNAMIC-CLASS:CAPS">GSF_DYNAMIC_CLASS</link>                   (name, prefix, class_init, instance_init, parent)
+#define             <link linkend="GSF-DYNAMIC-CLASS-FULL:CAPS">GSF_DYNAMIC_CLASS_FULL</link>              (name, prefix, base_init, base_finalize,
+                                                         				   class_init,  class_finalize, instance_init, parent_type,
+                                                         			       abstract, interface_decl)
+#define             <link linkend="GSF-DYNAMIC-CLASS-ABSTRACT:CAPS">GSF_DYNAMIC_CLASS_ABSTRACT</link>          (name, prefix, class_init, instance_init, parent)
+#define             <link linkend="GSF-DYNAMIC-INTERFACE:CAPS">GSF_DYNAMIC_INTERFACE</link>               (init_func, iface_type, module)
+#define             <link linkend="GSF-DYNAMIC-INTERFACE-FULL:CAPS">GSF_DYNAMIC_INTERFACE_FULL</link>          (type, init_func, iface_type, module)
+#define             <link linkend="GSF-PARAM-STATIC:CAPS">GSF_PARAM_STATIC</link>
+
+#define             <link linkend="GSF-ERROR:CAPS">GSF_ERROR</link>
+enum                <link linkend="GsfError">GsfError</link>;
+<link linkend="GQuark">GQuark</link>              <link linkend="gsf-error-quark">gsf_error_quark</link>                     (void);
+
+<link linkend="void">void</link>                <link linkend="gsf-mem-dump">gsf_mem_dump</link>                        (<link linkend="guint8">guint8</link> const *ptr,
+                                                         <link linkend="size-t">size_t</link> len);
+<link linkend="void">void</link>                <link linkend="gsf-input-dump">gsf_input_dump</link>                      (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="gboolean">gboolean</link> dump_as_hex);
+
+#define             <link linkend="GSF-OFF-T-FORMAT:CAPS">GSF_OFF_T_FORMAT</link>
+typedef             <link linkend="gsf-off-t">gsf_off_t</link>;
+<link linkend="char">char</link>*               <link linkend="gsf-filename-to-utf8">gsf_filename_to_utf8</link>                (<link linkend="char">char</link> const *filename,
+                                                         <link linkend="gboolean">gboolean</link> quoted);
+<link linkend="void">void</link>                <link linkend="gsf-iconv-close">gsf_iconv_close</link>                     (<link linkend="GIConv">GIConv</link> handle);
+<link linkend="char">char</link>const *         <link linkend="gsf-extension-pointer">gsf_extension_pointer</link>               (<link linkend="char">char</link> const *path);
+
+<link linkend="guint8">guint8</link>*             <link linkend="gsf-base64-encode-simple">gsf_base64_encode_simple</link>            (<link linkend="guint8">guint8</link> const *data,
+                                                         <link linkend="size-t">size_t</link> len);
+<link linkend="size-t">size_t</link>              <link linkend="gsf-base64-encode-close">gsf_base64_encode_close</link>             (<link linkend="guint8">guint8</link> const *in,
+                                                         <link linkend="size-t">size_t</link> inlen,
+                                                         <link linkend="gboolean">gboolean</link> break_lines,
+                                                         <link linkend="guint8">guint8</link> *out,
+                                                         <link linkend="int">int</link> *state,
+                                                         <link linkend="guint">guint</link> *save);
+<link linkend="size-t">size_t</link>              <link linkend="gsf-base64-encode-step">gsf_base64_encode_step</link>              (<link linkend="guint8">guint8</link> const *in,
+                                                         <link linkend="size-t">size_t</link> len,
+                                                         <link linkend="gboolean">gboolean</link> break_lines,
+                                                         <link linkend="guint8">guint8</link> *out,
+                                                         <link linkend="int">int</link> *state,
+                                                         <link linkend="guint">guint</link> *save);
+<link linkend="size-t">size_t</link>              <link linkend="gsf-base64-decode-simple">gsf_base64_decode_simple</link>            (<link linkend="guint8">guint8</link> *data,
+                                                         <link linkend="size-t">size_t</link> len);
+<link linkend="size-t">size_t</link>              <link linkend="gsf-base64-decode-step">gsf_base64_decode_step</link>              (<link linkend="guint8">guint8</link> const *in,
+                                                         <link linkend="size-t">size_t</link> len,
+                                                         <link linkend="guint8">guint8</link> *out,
+                                                         <link linkend="int">int</link> *state,
+                                                         <link linkend="guint">guint</link> *save);
+#define             <link linkend="GSF-LE-GET-GINT8:CAPS">GSF_LE_GET_GINT8</link>                    (p)
+#define             <link linkend="GSF-LE-GET-GUINT64:CAPS">GSF_LE_GET_GUINT64</link>                  (p)
+#define             <link linkend="GSF-LE-GET-GINT16:CAPS">GSF_LE_GET_GINT16</link>                   (p)
+#define             <link linkend="GSF-LE-GET-GUINT8:CAPS">GSF_LE_GET_GUINT8</link>                   (p)
+#define             <link linkend="GSF-LE-GET-GINT32:CAPS">GSF_LE_GET_GINT32</link>                   (p)
+#define             <link linkend="GSF-LE-GET-GUINT16:CAPS">GSF_LE_GET_GUINT16</link>                  (p)
+#define             <link linkend="GSF-LE-GET-GUINT32:CAPS">GSF_LE_GET_GUINT32</link>                  (p)
+#define             <link linkend="GSF-LE-GET-GINT64:CAPS">GSF_LE_GET_GINT64</link>                   (p)
+<link linkend="guint64">guint64</link>             <link linkend="gsf-le-get-guint64">gsf_le_get_guint64</link>                  (<link linkend="void">void</link> const *p);
+#define             <link linkend="GSF-LE-GET-FLOAT:CAPS">GSF_LE_GET_FLOAT</link>                    (p)
+<link linkend="float">float</link>               <link linkend="gsf-le-get-float">gsf_le_get_float</link>                    (<link linkend="void">void</link> const *p);
+#define             <link linkend="GSF-LE-GET-DOUBLE:CAPS">GSF_LE_GET_DOUBLE</link>                   (p)
+<link linkend="double">double</link>              <link linkend="gsf-le-get-double">gsf_le_get_double</link>                   (<link linkend="void">void</link> const *p);
+#define             <link linkend="GSF-LE-SET-GUINT8:CAPS">GSF_LE_SET_GUINT8</link>                   (p, dat)
+#define             <link linkend="GSF-LE-SET-GUINT16:CAPS">GSF_LE_SET_GUINT16</link>                  (p, dat)
+#define             <link linkend="GSF-LE-SET-GUINT32:CAPS">GSF_LE_SET_GUINT32</link>                  (p, dat)
+#define             <link linkend="GSF-LE-SET-GINT8:CAPS">GSF_LE_SET_GINT8</link>                    (p,dat)
+#define             <link linkend="GSF-LE-SET-GINT16:CAPS">GSF_LE_SET_GINT16</link>                   (p,dat)
+#define             <link linkend="GSF-LE-SET-GINT32:CAPS">GSF_LE_SET_GINT32</link>                   (p,dat)
+#define             <link linkend="GSF-LE-SET-GINT64:CAPS">GSF_LE_SET_GINT64</link>                   (p,dat)
+#define             <link linkend="GSF-LE-SET-GUINT64:CAPS">GSF_LE_SET_GUINT64</link>                  (p, dat)
+#define             <link linkend="GSF-LE-SET-FLOAT:CAPS">GSF_LE_SET_FLOAT</link>                    (p,dat)
+#define             <link linkend="GSF-LE-SET-DOUBLE:CAPS">GSF_LE_SET_DOUBLE</link>                   (p,dat)
+<link linkend="void">void</link>                <link linkend="gsf-le-set-float">gsf_le_set_float</link>                    (<link linkend="void">void</link> *p,
+                                                         <link linkend="float">float</link> f);
+<link linkend="void">void</link>                <link linkend="gsf-le-set-double">gsf_le_set_double</link>                   (<link linkend="void">void</link> *p,
+                                                         <link linkend="double">double</link> d);
+
+                    <link linkend="GsfTimestamp">GsfTimestamp</link>;
+<link linkend="GsfTimestamp">GsfTimestamp</link>*       <link linkend="gsf-timestamp-copy">gsf_timestamp_copy</link>                  (<link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);
+<link linkend="void">void</link>                <link linkend="gsf-timestamp-free">gsf_timestamp_free</link>                  (<link linkend="GsfTimestamp">GsfTimestamp</link> *stamp);
+<link linkend="char">char</link>*               <link linkend="gsf-timestamp-as-string">gsf_timestamp_as_string</link>             (<link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);
+<link linkend="int">int</link>                 <link linkend="gsf-timestamp-from-string">gsf_timestamp_from_string</link>           (<link linkend="char">char</link> const *spec,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> *stamp);
+<link linkend="guint">guint</link>               <link linkend="gsf-timestamp-hash">gsf_timestamp_hash</link>                  (<link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-timestamp-equal">gsf_timestamp_equal</link>                 (<link linkend="GsfTimestamp">GsfTimestamp</link> const *a,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> const *b);
+<link linkend="void">void</link>                <link linkend="gsf-value-set-timestamp">gsf_value_set_timestamp</link>             (<link linkend="GValue">GValue</link> *value,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);
+#define             <link linkend="VAL-IS-GSF-TIMESTAMP:CAPS">VAL_IS_GSF_TIMESTAMP</link>                (v)
+
+
+<link linkend="int">int</link>                 <link linkend="gsf-timestamp-parse">gsf_timestamp_parse</link>                 (<link linkend="char">char</link> const *spec,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> *stamp);
+
+<link linkend="GValue">GValue</link>*             <link linkend="gsf-doc-prop-swap-val">gsf_doc_prop_swap_val</link>               (<link linkend="GsfDocProp">GsfDocProp</link> *prop,
+                                                         <link linkend="GValue">GValue</link> *val);
+<link linkend="void">void</link>                <link linkend="gsf-property-settings-collect">gsf_property_settings_collect</link>       (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="GParameter">GParameter</link> **p_params,
+                                                         <link linkend="size-t">size_t</link> *p_n_params,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="gsf-property-settings-collect-valist">gsf_property_settings_collect_valist</link>
+                                                        (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="GParameter">GParameter</link> **p_params,
+                                                         <link linkend="size-t">size_t</link> *p_n_params,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         <link linkend="va-list">va_list</link> var_args);
+<link linkend="void">void</link>                <link linkend="gsf-property-settings-free">gsf_property_settings_free</link>          (<link linkend="GParameter">GParameter</link> *params,
+                                                         <link linkend="size-t">size_t</link> n_params);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gsf-utils.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-utils.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="gsf-init" role="function">
+<title>gsf_init ()</title>
+<indexterm zone="gsf-init"><primary>gsf_init</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_init                            (void);</programlisting>
+<para>
+Initializes the GSF library</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-shutdown" role="function">
+<title>gsf_shutdown ()</title>
+<indexterm zone="gsf-shutdown"><primary>gsf_shutdown</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_shutdown                        (void);</programlisting>
+<para>
+De-intializes the GSF library from a type module.
+Currently does nothing.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-init-dynamic" role="function">
+<title>gsf_init_dynamic ()</title>
+<indexterm zone="gsf-init-dynamic"><primary>gsf_init_dynamic</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_init_dynamic                    (<link linkend="GTypeModule">GTypeModule</link> *module);</programlisting>
+<para>
+Initializes the GSF library and associates it with a type module <parameter>mod</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>module</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GTypeModule"><type>GTypeModule</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-shutdown-dynamic" role="function">
+<title>gsf_shutdown_dynamic ()</title>
+<indexterm zone="gsf-shutdown-dynamic"><primary>gsf_shutdown_dynamic</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_shutdown_dynamic                (<link linkend="GTypeModule">GTypeModule</link> *module);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>module</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="libgsf-major-version" role="variable">
+<title>libgsf_major_version</title>
+<indexterm zone="libgsf-major-version"><primary>libgsf_major_version</primary></indexterm><programlisting>extern int libgsf_major_version;
+</programlisting>
+<para>
+Major version number of libgsf, indicating the ABI version.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="libgsf-minor-version" role="variable">
+<title>libgsf_minor_version</title>
+<indexterm zone="libgsf-minor-version"><primary>libgsf_minor_version</primary></indexterm><programlisting>extern int libgsf_minor_version;
+</programlisting>
+<para>
+Minor (secondary) version number of libgsf, indicating the API version.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="libgsf-micro-version" role="variable">
+<title>libgsf_micro_version</title>
+<indexterm zone="libgsf-micro-version"><primary>libgsf_micro_version</primary></indexterm><programlisting>extern int libgsf_micro_version;
+</programlisting>
+<para>
+Micro (tertiary) version number of libgsf, indicating bug fixes.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="GSF-CLASS:CAPS" role="macro">
+<title>GSF_CLASS()</title>
+<indexterm zone="GSF-CLASS:CAPS"><primary>GSF_CLASS</primary></indexterm><programlisting>#define             GSF_CLASS(name, prefix, class_init, instance_init, parent)</programlisting>
+<para>
+Set up a GSF class.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> (string) Name of the class.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara> (string) Prefix designating the namespace to be used for
+implementing the class.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_init</parameter>&nbsp;:</term>
+<listitem><simpara> (<link linkend="GClassInitFunc"><type>GClassInitFunc</type></link>) Initialisation function for the class.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>instance_init</parameter>&nbsp;:</term>
+<listitem><simpara> (<link linkend="GInstanceInitFunc"><type>GInstanceInitFunc</type></link>) Initialisation (constructor) function
+for an instance of the class.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara> Parent class to this class.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-CLASS-FULL:CAPS" role="macro">
+<title>GSF_CLASS_FULL()</title>
+<indexterm zone="GSF-CLASS-FULL:CAPS"><primary>GSF_CLASS_FULL</primary></indexterm><programlisting>#define             GSF_CLASS_FULL(name, prefix, base_init, base_finalize, \
+            		       class_init, class_finalize, instance_init, parent_type, \
+            		       abstract, interface_decl)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>base_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>base_finalize</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_finalize</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>instance_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent_type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>abstract</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>interface_decl</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-CLASS-ABSTRACT:CAPS" role="macro">
+<title>GSF_CLASS_ABSTRACT()</title>
+<indexterm zone="GSF-CLASS-ABSTRACT:CAPS"><primary>GSF_CLASS_ABSTRACT</primary></indexterm><programlisting>#define             GSF_CLASS_ABSTRACT(name, prefix, class_init, instance_init, parent)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>instance_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-INTERFACE:CAPS" role="macro">
+<title>GSF_INTERFACE()</title>
+<indexterm zone="GSF-INTERFACE:CAPS"><primary>GSF_INTERFACE</primary></indexterm><programlisting>#define             GSF_INTERFACE(init_func, iface_type)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>init_func</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iface_type</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-INTERFACE-FULL:CAPS" role="macro">
+<title>GSF_INTERFACE_FULL()</title>
+<indexterm zone="GSF-INTERFACE-FULL:CAPS"><primary>GSF_INTERFACE_FULL</primary></indexterm><programlisting>#define             GSF_INTERFACE_FULL(type, init_func, iface_type)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>init_func</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iface_type</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-DYNAMIC-CLASS:CAPS" role="macro">
+<title>GSF_DYNAMIC_CLASS()</title>
+<indexterm zone="GSF-DYNAMIC-CLASS:CAPS"><primary>GSF_DYNAMIC_CLASS</primary></indexterm><programlisting>#define             GSF_DYNAMIC_CLASS(name, prefix, class_init, instance_init, parent)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>instance_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-DYNAMIC-CLASS-FULL:CAPS" role="macro">
+<title>GSF_DYNAMIC_CLASS_FULL()</title>
+<indexterm zone="GSF-DYNAMIC-CLASS-FULL:CAPS"><primary>GSF_DYNAMIC_CLASS_FULL</primary></indexterm><programlisting>#define             GSF_DYNAMIC_CLASS_FULL(name, prefix, base_init, base_finalize, \
+            				   class_init,  class_finalize, instance_init, parent_type, \
+            			       abstract, interface_decl)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>base_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>base_finalize</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_finalize</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>instance_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent_type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>abstract</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>interface_decl</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-DYNAMIC-CLASS-ABSTRACT:CAPS" role="macro">
+<title>GSF_DYNAMIC_CLASS_ABSTRACT()</title>
+<indexterm zone="GSF-DYNAMIC-CLASS-ABSTRACT:CAPS"><primary>GSF_DYNAMIC_CLASS_ABSTRACT</primary></indexterm><programlisting>#define             GSF_DYNAMIC_CLASS_ABSTRACT(name, prefix, class_init, instance_init, parent)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>class_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>instance_init</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parent</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-DYNAMIC-INTERFACE:CAPS" role="macro">
+<title>GSF_DYNAMIC_INTERFACE()</title>
+<indexterm zone="GSF-DYNAMIC-INTERFACE:CAPS"><primary>GSF_DYNAMIC_INTERFACE</primary></indexterm><programlisting>#define             GSF_DYNAMIC_INTERFACE(init_func, iface_type, module)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>init_func</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iface_type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>module</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-DYNAMIC-INTERFACE-FULL:CAPS" role="macro">
+<title>GSF_DYNAMIC_INTERFACE_FULL()</title>
+<indexterm zone="GSF-DYNAMIC-INTERFACE-FULL:CAPS"><primary>GSF_DYNAMIC_INTERFACE_FULL</primary></indexterm><programlisting>#define             GSF_DYNAMIC_INTERFACE_FULL(type, init_func, iface_type, module)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>init_func</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iface_type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>module</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-PARAM-STATIC:CAPS" role="macro">
+<title>GSF_PARAM_STATIC</title>
+<indexterm zone="GSF-PARAM-STATIC:CAPS"><primary>GSF_PARAM_STATIC</primary></indexterm><programlisting>#define             GSF_PARAM_STATIC</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GSF-ERROR:CAPS" role="macro">
+<title>GSF_ERROR</title>
+<indexterm zone="GSF-ERROR:CAPS"><primary>GSF_ERROR</primary></indexterm><programlisting>#define GSF_ERROR (gsf_error_quark ())
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfError" role="enum">
+<title>enum GsfError</title>
+<indexterm zone="GsfError"><primary>GsfError</primary></indexterm><programlisting>typedef enum {
+	GSF_ERROR_OUT_OF_MEMORY,
+	GSF_ERROR_INVALID_DATA
+} GsfError;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-error-quark" role="function">
+<title>gsf_error_quark ()</title>
+<indexterm zone="gsf-error-quark"><primary>gsf_error_quark</primary></indexterm><programlisting><link linkend="GQuark">GQuark</link>              gsf_error_quark                     (void);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>  the <link linkend="GQuark"><type>GQuark</type></link> used to identify libgsf errors in <link linkend="GError"><type>GError</type></link> structures.
+	Specific error codes come from the <link linkend="GsfError"><type>GsfError</type></link> enumeration.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-mem-dump" role="function">
+<title>gsf_mem_dump ()</title>
+<indexterm zone="gsf-mem-dump"><primary>gsf_mem_dump</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_mem_dump                        (<link linkend="guint8">guint8</link> const *ptr,
+                                                         <link linkend="size-t">size_t</link> len);</programlisting>
+<para>
+Dump <parameter>len</parameter> bytes from the memory location given by <parameter>ptr</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>ptr</parameter>&nbsp;:</term>
+<listitem><simpara> memory area to be dumped.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> how many bytes will be dumped.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-dump" role="function">
+<title>gsf_input_dump ()</title>
+<indexterm zone="gsf-input-dump"><primary>gsf_input_dump</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_input_dump                      (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="gboolean">gboolean</link> dump_as_hex);</programlisting>
+<para>
+Dumps <parameter>input</parameter>'s contents to STDOUT, optionally in hex format.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dump_as_hex</parameter>&nbsp;:</term>
+<listitem><simpara> If <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>, dump in hexidecmal format
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-OFF-T-FORMAT:CAPS" role="macro">
+<title>GSF_OFF_T_FORMAT</title>
+<indexterm zone="GSF-OFF-T-FORMAT:CAPS"><primary>GSF_OFF_T_FORMAT</primary></indexterm><programlisting>#define GSF_OFF_T_FORMAT	G_GINT64_FORMAT
+</programlisting>
+<para>
+The printf(3) conversion specifier to be used for printing values of type
+<link linkend="gsf-off-t"><type>gsf_off_t</type></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-off-t" role="typedef">
+<title>gsf_off_t</title>
+<indexterm zone="gsf-off-t"><primary>gsf_off_t</primary></indexterm><programlisting>typedef gint64 gsf_off_t;
+</programlisting>
+<para>
+Data type to represent offsets (positions) within a data stream.
+</para>
+<para>
+FIXME:
+gsf_off_t is really supposed to be the widest type off_t can be configured
+to on the platform</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-filename-to-utf8" role="function">
+<title>gsf_filename_to_utf8 ()</title>
+<indexterm zone="gsf-filename-to-utf8"><primary>gsf_filename_to_utf8</primary></indexterm><programlisting><link linkend="char">char</link>*               gsf_filename_to_utf8                (<link linkend="char">char</link> const *filename,
+                                                         <link linkend="gboolean">gboolean</link> quoted);</programlisting>
+<para>
+A utility wrapper to make sure filenames are valid utf8.
+Caller must g_free the result.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>filename</parameter>&nbsp;:</term>
+<listitem><simpara> file name suitable for open(2).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>quoted</parameter>&nbsp;:</term>
+<listitem><simpara> if <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>, the resulting utf8 file name will be quoted
+   (unless it is invalid).
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <parameter>filename</parameter> using utf-8 encoding for display
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-iconv-close" role="function">
+<title>gsf_iconv_close ()</title>
+<indexterm zone="gsf-iconv-close"><primary>gsf_iconv_close</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_iconv_close                     (<link linkend="GIConv">GIConv</link> handle);</programlisting>
+<para>
+A utility wrapper to safely close an iconv handle.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>handle</parameter>&nbsp;:</term>
+<listitem><simpara> handle to be closed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-extension-pointer" role="function">
+<title>gsf_extension_pointer ()</title>
+<indexterm zone="gsf-extension-pointer"><primary>gsf_extension_pointer</primary></indexterm><programlisting><link linkend="char">char</link>const *         gsf_extension_pointer               (<link linkend="char">char</link> const *path);</programlisting>
+<para>
+Extracts the extension from the end of a filename (the part after the final
+'.' in the filename).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> A filename or file path.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A pointer to the extension part of the filename, or a
+pointer to the end of the string if the filename does not
+have an extension.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-base64-encode-simple" role="function">
+<title>gsf_base64_encode_simple ()</title>
+<indexterm zone="gsf-base64-encode-simple"><primary>gsf_base64_encode_simple</primary></indexterm><programlisting><link linkend="guint8">guint8</link>*             gsf_base64_encode_simple            (<link linkend="guint8">guint8</link> const *data,
+                                                         <link linkend="size-t">size_t</link> len);</programlisting>
+<para>
+Encodes data from <parameter>data</parameter> back into <parameter>data</parameter> using base64 encoding.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> max length of data to encode
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes encoded
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-base64-encode-close" role="function">
+<title>gsf_base64_encode_close ()</title>
+<indexterm zone="gsf-base64-encode-close"><primary>gsf_base64_encode_close</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              gsf_base64_encode_close             (<link linkend="guint8">guint8</link> const *in,
+                                                         <link linkend="size-t">size_t</link> inlen,
+                                                         <link linkend="gboolean">gboolean</link> break_lines,
+                                                         <link linkend="guint8">guint8</link> *out,
+                                                         <link linkend="int">int</link> *state,
+                                                         <link linkend="guint">guint</link> *save);</programlisting>
+<para>
+This funcion should be called to when finished encoding everything, to
+flush off the last little bit.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>in</parameter>&nbsp;:</term>
+<listitem><simpara> Data to be encoded
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>inlen</parameter>&nbsp;:</term>
+<listitem><simpara> Length of data to be encoded
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>break_lines</parameter>&nbsp;:</term>
+<listitem><simpara> Whether to use line breaks
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&nbsp;:</term>
+<listitem><simpara> Encoded data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>state</parameter>&nbsp;:</term>
+<listitem><simpara> holds the number of bits that are stored in <parameter>save</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>save</parameter>&nbsp;:</term>
+<listitem><simpara> leftover bits that have not yet been decoded
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a count of the number of bytes in the final block.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-base64-encode-step" role="function">
+<title>gsf_base64_encode_step ()</title>
+<indexterm zone="gsf-base64-encode-step"><primary>gsf_base64_encode_step</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              gsf_base64_encode_step              (<link linkend="guint8">guint8</link> const *in,
+                                                         <link linkend="size-t">size_t</link> len,
+                                                         <link linkend="gboolean">gboolean</link> break_lines,
+                                                         <link linkend="guint8">guint8</link> *out,
+                                                         <link linkend="int">int</link> *state,
+                                                         <link linkend="guint">guint</link> *save);</programlisting>
+<para>
+Performs an 'encode step', only encodes blocks of 3 characters from <parameter>in</parameter> into
+the output <parameter>out</parameter> at a time, saves left-over state in <parameter>state</parameter> and <parameter>save</parameter>
+(initialise to 0 on first invocation).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>in</parameter>&nbsp;:</term>
+<listitem><simpara> input stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> max length of data to decode
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>break_lines</parameter>&nbsp;:</term>
+<listitem><simpara> Whether to use line breaks
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&nbsp;:</term>
+<listitem><simpara> output stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>state</parameter>&nbsp;:</term>
+<listitem><simpara> holds the number of bits that are stored in <parameter>save</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>save</parameter>&nbsp;:</term>
+<listitem><simpara> leftover bits that have not yet been decoded
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes encoded
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-base64-decode-simple" role="function">
+<title>gsf_base64_decode_simple ()</title>
+<indexterm zone="gsf-base64-decode-simple"><primary>gsf_base64_decode_simple</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              gsf_base64_decode_simple            (<link linkend="guint8">guint8</link> *data,
+                                                         <link linkend="size-t">size_t</link> len);</programlisting>
+<para>
+Decodes a chunk of base64 encoded data from <parameter>data</parameter> back into <parameter>data</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> max length of data to decode
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes converted
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-base64-decode-step" role="function">
+<title>gsf_base64_decode_step ()</title>
+<indexterm zone="gsf-base64-decode-step"><primary>gsf_base64_decode_step</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              gsf_base64_decode_step              (<link linkend="guint8">guint8</link> const *in,
+                                                         <link linkend="size-t">size_t</link> len,
+                                                         <link linkend="guint8">guint8</link> *out,
+                                                         <link linkend="int">int</link> *state,
+                                                         <link linkend="guint">guint</link> *save);</programlisting>
+<para>
+Decodes a chunk of base64 encoded data</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>in</parameter>&nbsp;:</term>
+<listitem><simpara> input stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> max length of data to decode
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out</parameter>&nbsp;:</term>
+<listitem><simpara> output stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>state</parameter>&nbsp;:</term>
+<listitem><simpara> holds the number of bits that are stored in <parameter>save</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>save</parameter>&nbsp;:</term>
+<listitem><simpara> leftover bits that have not yet been decoded
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes converted
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GINT8:CAPS" role="macro">
+<title>GSF_LE_GET_GINT8()</title>
+<indexterm zone="GSF-LE-GET-GINT8:CAPS"><primary>GSF_LE_GET_GINT8</primary></indexterm><programlisting>#define GSF_LE_GET_GINT8(p) ((gint8)GSF_LE_GET_GUINT8(p))
+</programlisting>
+<para>
+Interpret binary data as a signed 8-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GUINT64:CAPS" role="macro">
+<title>GSF_LE_GET_GUINT64()</title>
+<indexterm zone="GSF-LE-GET-GUINT64:CAPS"><primary>GSF_LE_GET_GUINT64</primary></indexterm><programlisting>#define GSF_LE_GET_GUINT64(p) (gsf_le_get_guint64 (p))
+</programlisting>
+<para>
+Interpret binary data as an unsigned 64-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GINT16:CAPS" role="macro">
+<title>GSF_LE_GET_GINT16()</title>
+<indexterm zone="GSF-LE-GET-GINT16:CAPS"><primary>GSF_LE_GET_GINT16</primary></indexterm><programlisting>#define GSF_LE_GET_GINT16(p) ((gint16)GSF_LE_GET_GUINT16(p))
+</programlisting>
+<para>
+Interpret binary data as a signed 16-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GUINT8:CAPS" role="macro">
+<title>GSF_LE_GET_GUINT8()</title>
+<indexterm zone="GSF-LE-GET-GUINT8:CAPS"><primary>GSF_LE_GET_GUINT8</primary></indexterm><programlisting>#define GSF_LE_GET_GUINT8(p) (*(guint8 const *)(p))
+</programlisting>
+<para>
+Interpret binary data as an unsigned 8-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GINT32:CAPS" role="macro">
+<title>GSF_LE_GET_GINT32()</title>
+<indexterm zone="GSF-LE-GET-GINT32:CAPS"><primary>GSF_LE_GET_GINT32</primary></indexterm><programlisting>#define GSF_LE_GET_GINT32(p) ((gint32)GSF_LE_GET_GUINT32(p))
+</programlisting>
+<para>
+Interpret binary data as a signed 32-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GUINT16:CAPS" role="macro">
+<title>GSF_LE_GET_GUINT16()</title>
+<indexterm zone="GSF-LE-GET-GUINT16:CAPS"><primary>GSF_LE_GET_GUINT16</primary></indexterm><programlisting>#define             GSF_LE_GET_GUINT16(p)</programlisting>
+<para>
+Interpret binary data as an unsigned 16-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GUINT32:CAPS" role="macro">
+<title>GSF_LE_GET_GUINT32()</title>
+<indexterm zone="GSF-LE-GET-GUINT32:CAPS"><primary>GSF_LE_GET_GUINT32</primary></indexterm><programlisting>#define             GSF_LE_GET_GUINT32(p)</programlisting>
+<para>
+Interpret binary data as an unsigned 32-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-GINT64:CAPS" role="macro">
+<title>GSF_LE_GET_GINT64()</title>
+<indexterm zone="GSF-LE-GET-GINT64:CAPS"><primary>GSF_LE_GET_GINT64</primary></indexterm><programlisting>#define GSF_LE_GET_GINT64(p) ((gint64)GSF_LE_GET_GUINT64(p))
+</programlisting>
+<para>
+Interpret binary data as a signed 64-bit integer in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-le-get-guint64" role="function">
+<title>gsf_le_get_guint64 ()</title>
+<indexterm zone="gsf-le-get-guint64"><primary>gsf_le_get_guint64</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gsf_le_get_guint64                  (<link linkend="void">void</link> const *p);</programlisting>
+<para>
+Interpret binary data as a guint64 (8 byte unsigned integer type) in little
+endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> interpreted data
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-FLOAT:CAPS" role="macro">
+<title>GSF_LE_GET_FLOAT()</title>
+<indexterm zone="GSF-LE-GET-FLOAT:CAPS"><primary>GSF_LE_GET_FLOAT</primary></indexterm><programlisting>#define GSF_LE_GET_FLOAT(p) (gsf_le_get_float (p))
+</programlisting>
+<para>
+Interpret binary data as a float in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-le-get-float" role="function">
+<title>gsf_le_get_float ()</title>
+<indexterm zone="gsf-le-get-float"><primary>gsf_le_get_float</primary></indexterm><programlisting><link linkend="float">float</link>               gsf_le_get_float                    (<link linkend="void">void</link> const *p);</programlisting>
+<para>
+Interpret binary data as a float in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> interpreted data
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-GET-DOUBLE:CAPS" role="macro">
+<title>GSF_LE_GET_DOUBLE()</title>
+<indexterm zone="GSF-LE-GET-DOUBLE:CAPS"><primary>GSF_LE_GET_DOUBLE</primary></indexterm><programlisting>#define GSF_LE_GET_DOUBLE(p) (gsf_le_get_double (p))
+</programlisting>
+<para>
+Interpret binary data as a double in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-le-get-double" role="function">
+<title>gsf_le_get_double ()</title>
+<indexterm zone="gsf-le-get-double"><primary>gsf_le_get_double</primary></indexterm><programlisting><link linkend="double">double</link>              gsf_le_get_double                   (<link linkend="void">void</link> const *p);</programlisting>
+<para>
+Interpret binary data as a double in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> interpreted data
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GUINT8:CAPS" role="macro">
+<title>GSF_LE_SET_GUINT8()</title>
+<indexterm zone="GSF-LE-SET-GUINT8:CAPS"><primary>GSF_LE_SET_GUINT8</primary></indexterm><programlisting>#define             GSF_LE_SET_GUINT8(p, dat)</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 8-bit unsigned integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GUINT16:CAPS" role="macro">
+<title>GSF_LE_SET_GUINT16()</title>
+<indexterm zone="GSF-LE-SET-GUINT16:CAPS"><primary>GSF_LE_SET_GUINT16</primary></indexterm><programlisting>#define             GSF_LE_SET_GUINT16(p, dat)</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 16-bit unsigned integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GUINT32:CAPS" role="macro">
+<title>GSF_LE_SET_GUINT32()</title>
+<indexterm zone="GSF-LE-SET-GUINT32:CAPS"><primary>GSF_LE_SET_GUINT32</primary></indexterm><programlisting>#define             GSF_LE_SET_GUINT32(p, dat)</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 32-bit unsigned integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GINT8:CAPS" role="macro">
+<title>GSF_LE_SET_GINT8()</title>
+<indexterm zone="GSF-LE-SET-GINT8:CAPS"><primary>GSF_LE_SET_GINT8</primary></indexterm><programlisting>#define GSF_LE_SET_GINT8(p,dat) GSF_LE_SET_GUINT8((p),(dat))
+</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 8-bit signed integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GINT16:CAPS" role="macro">
+<title>GSF_LE_SET_GINT16()</title>
+<indexterm zone="GSF-LE-SET-GINT16:CAPS"><primary>GSF_LE_SET_GINT16</primary></indexterm><programlisting>#define GSF_LE_SET_GINT16(p,dat) GSF_LE_SET_GUINT16((p),(dat))
+</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 16-bit signed integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GINT32:CAPS" role="macro">
+<title>GSF_LE_SET_GINT32()</title>
+<indexterm zone="GSF-LE-SET-GINT32:CAPS"><primary>GSF_LE_SET_GINT32</primary></indexterm><programlisting>#define GSF_LE_SET_GINT32(p,dat) GSF_LE_SET_GUINT32((p),(dat))
+</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 32-bit signed integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GINT64:CAPS" role="macro">
+<title>GSF_LE_SET_GINT64()</title>
+<indexterm zone="GSF-LE-SET-GINT64:CAPS"><primary>GSF_LE_SET_GINT64</primary></indexterm><programlisting>#define GSF_LE_SET_GINT64(p,dat) GSF_LE_SET_GUINT64((p),(dat))
+</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 64-bit signed integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-GUINT64:CAPS" role="macro">
+<title>GSF_LE_SET_GUINT64()</title>
+<indexterm zone="GSF-LE-SET-GUINT64:CAPS"><primary>GSF_LE_SET_GUINT64</primary></indexterm><programlisting>#define             GSF_LE_SET_GUINT64(p, dat)</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> 64-bit unsigned integer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-FLOAT:CAPS" role="macro">
+<title>GSF_LE_SET_FLOAT()</title>
+<indexterm zone="GSF-LE-SET-FLOAT:CAPS"><primary>GSF_LE_SET_FLOAT</primary></indexterm><programlisting>#define GSF_LE_SET_FLOAT(p,dat) gsf_le_set_float((p),(dat))
+</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> float to be stored
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-LE-SET-DOUBLE:CAPS" role="macro">
+<title>GSF_LE_SET_DOUBLE()</title>
+<indexterm zone="GSF-LE-SET-DOUBLE:CAPS"><primary>GSF_LE_SET_DOUBLE</primary></indexterm><programlisting>#define GSF_LE_SET_DOUBLE(p,dat) gsf_le_set_double((p),(dat))
+</programlisting>
+<para>
+Store <parameter>dat</parameter> in little endian order in memory pointed to by <parameter>p</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dat</parameter>&nbsp;:</term>
+<listitem><simpara> double to be stored
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-le-set-float" role="function">
+<title>gsf_le_set_float ()</title>
+<indexterm zone="gsf-le-set-float"><primary>gsf_le_set_float</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_le_set_float                    (<link linkend="void">void</link> *p,
+                                                         <link linkend="float">float</link> f);</programlisting>
+<para>
+Store a value of type float in memory in little endian order.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>f</parameter>&nbsp;:</term>
+<listitem><simpara> float to be stored
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-le-set-double" role="function">
+<title>gsf_le_set_double ()</title>
+<indexterm zone="gsf-le-set-double"><primary>gsf_le_set_double</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_le_set_double                   (<link linkend="void">void</link> *p,
+                                                         <link linkend="double">double</link> d);</programlisting>
+<para>
+Store a value of type double in memory in little endian order</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>d</parameter>&nbsp;:</term>
+<listitem><simpara> double to be stored
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfTimestamp" role="struct">
+<title>GsfTimestamp</title>
+<indexterm zone="GsfTimestamp"><primary>GsfTimestamp</primary></indexterm><programlisting>typedef struct {
+	GDate	  date;			/* In local timezone */
+	glong     seconds;		/* time of day */
+	GString	  time_zone;		/* possibly blank */
+
+	guint32	  timet;
+} GsfTimestamp;
+</programlisting>
+<para>
+A point in time.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="GDate">GDate</link>&nbsp;<structfield>date</structfield>;</term>
+<listitem><simpara>	<link linkend="GDate"><type>GDate</type></link> in local timezone
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&nbsp;<structfield>seconds</structfield>;</term>
+<listitem><simpara>	<link linkend="glong"><type>glong</type></link> number of seconds since <parameter>date</parameter>.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="GString">GString</link>&nbsp;<structfield>time_zone</structfield>;</term>
+<listitem><simpara>	possibly blank <link linkend="GString"><type>GString</type></link> of the timezone
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint32">guint32</link>&nbsp;<structfield>timet</structfield>;</term>
+<listitem><simpara> as from mktime.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-timestamp-copy" role="function">
+<title>gsf_timestamp_copy ()</title>
+<indexterm zone="gsf-timestamp-copy"><primary>gsf_timestamp_copy</primary></indexterm><programlisting><link linkend="GsfTimestamp">GsfTimestamp</link>*       gsf_timestamp_copy                  (<link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);</programlisting>
+<para>
+Copies a timestamp.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stamp</parameter>&nbsp;:</term>
+<listitem><simpara> timestamp to be copied
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a separate copy of <parameter>stamp</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-timestamp-free" role="function">
+<title>gsf_timestamp_free ()</title>
+<indexterm zone="gsf-timestamp-free"><primary>gsf_timestamp_free</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_timestamp_free                  (<link linkend="GsfTimestamp">GsfTimestamp</link> *stamp);</programlisting>
+<para>
+Releases the memory in use for <parameter>stamp</parameter> (if any).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stamp</parameter>&nbsp;:</term>
+<listitem><simpara> timestamp to be freed
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-timestamp-as-string" role="function">
+<title>gsf_timestamp_as_string ()</title>
+<indexterm zone="gsf-timestamp-as-string"><primary>gsf_timestamp_as_string</primary></indexterm><programlisting><link linkend="char">char</link>*               gsf_timestamp_as_string             (<link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);</programlisting>
+<para>
+Produce a string representation (ISO 8601 format) of <parameter>stamp</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stamp</parameter>&nbsp;:</term>
+<listitem><simpara> timestamp to be converted.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a string representation of <parameter>stamp</parameter>. When <parameter>stamp</parameter> is <link linkend="NULL:CAPS"><literal>NULL</literal></link>, the
+representation is "&lt;invalid&gt;".
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-timestamp-from-string" role="function" condition="since:1.14.12">
+<title>gsf_timestamp_from_string ()</title>
+<indexterm zone="gsf-timestamp-from-string" role="1.14.12"><primary>gsf_timestamp_from_string</primary></indexterm><programlisting><link linkend="int">int</link>                 gsf_timestamp_from_string           (<link linkend="char">char</link> const *spec,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> *stamp);</programlisting>
+<para>
+Very simple parser for time stamps.  Currently requires a format of
+	'YYYY-MM-DDThh:mm:ss'
+and does no bounds checking.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>spec</parameter>&nbsp;:</term>
+<listitem><simpara> The string to parse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>stamp</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfTimestamp"><type>GsfTimestamp</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> on success
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  1.14.12
+
+</para></refsect2>
+<refsect2 id="gsf-timestamp-hash" role="function">
+<title>gsf_timestamp_hash ()</title>
+<indexterm zone="gsf-timestamp-hash"><primary>gsf_timestamp_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               gsf_timestamp_hash                  (<link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>stamp</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-timestamp-equal" role="function">
+<title>gsf_timestamp_equal ()</title>
+<indexterm zone="gsf-timestamp-equal"><primary>gsf_timestamp_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_timestamp_equal                 (<link linkend="GsfTimestamp">GsfTimestamp</link> const *a,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> const *b);</programlisting>
+<para>
+Compare timestamps <parameter>a</parameter> and <parameter>b</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> a timestamp
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> another timestamp
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> true if <parameter>a</parameter> and <parameter>b</parameter> represent the same point in time; false otherwise.
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-value-set-timestamp" role="function">
+<title>gsf_value_set_timestamp ()</title>
+<indexterm zone="gsf-value-set-timestamp"><primary>gsf_value_set_timestamp</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_value_set_timestamp             (<link linkend="GValue">GValue</link> *value,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> const *stamp);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>stamp</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="VAL-IS-GSF-TIMESTAMP:CAPS" role="macro">
+<title>VAL_IS_GSF_TIMESTAMP()</title>
+<indexterm zone="VAL-IS-GSF-TIMESTAMP:CAPS"><primary>VAL_IS_GSF_TIMESTAMP</primary></indexterm><programlisting>#define VAL_IS_GSF_TIMESTAMP(v) (G_TYPE_CHECK_VALUE_TYPE((v), GSF_TIMESTAMP_TYPE))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>v</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-timestamp-parse" role="function">
+<title>gsf_timestamp_parse ()</title>
+<indexterm zone="gsf-timestamp-parse"><primary>gsf_timestamp_parse</primary></indexterm><programlisting><link linkend="int">int</link>                 gsf_timestamp_parse                 (<link linkend="char">char</link> const *spec,
+                                                         <link linkend="GsfTimestamp">GsfTimestamp</link> *stamp);</programlisting>
+<para>
+Very simple parser for time stamps.  Currently requires a format of
+	'YYYY-MM-DDThh:mm:ss'
+and does no bounds checking.
+</para>
+<para>
+Deprecated : Use gsf_timestamp_from_string</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>spec</parameter>&nbsp;:</term>
+<listitem><simpara> The string to parse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>stamp</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfTimestamp"><type>GsfTimestamp</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> on success
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-doc-prop-swap-val" role="function">
+<title>gsf_doc_prop_swap_val ()</title>
+<indexterm zone="gsf-doc-prop-swap-val"><primary>gsf_doc_prop_swap_val</primary></indexterm><programlisting><link linkend="GValue">GValue</link>*             gsf_doc_prop_swap_val               (<link linkend="GsfDocProp">GsfDocProp</link> *prop,
+                                                         <link linkend="GValue">GValue</link> *val);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>prop</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfDocProp"><type>GsfDocProp</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GValue"><type>GValue</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the current value of <parameter>prop</parameter>, and replaces it with <parameter>val</parameter>
+	Caller is responsible for unsetting and freeing the result.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-property-settings-collect" role="function">
+<title>gsf_property_settings_collect ()</title>
+<indexterm zone="gsf-property-settings-collect"><primary>gsf_property_settings_collect</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_property_settings_collect       (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="GParameter">GParameter</link> **p_params,
+                                                         <link linkend="size-t">size_t</link> *p_n_params,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         ...);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object_type</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>p_params</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>p_n_params</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_property_name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-property-settings-collect-valist" role="function">
+<title>gsf_property_settings_collect_valist ()</title>
+<indexterm zone="gsf-property-settings-collect-valist"><primary>gsf_property_settings_collect_valist</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_property_settings_collect_valist
+                                                        (<link linkend="GType">GType</link> object_type,
+                                                         <link linkend="GParameter">GParameter</link> **p_params,
+                                                         <link linkend="size-t">size_t</link> *p_n_params,
+                                                         const <link linkend="gchar">gchar</link> *first_property_name,
+                                                         <link linkend="va-list">va_list</link> var_args);</programlisting>
+<para>
+This function builds a GParameter array suitable for g_object_newv.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>object_type</parameter>&nbsp;:</term>
+<listitem><simpara> the GType for which the properties are being set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>p_params</parameter>&nbsp;:</term>
+<listitem><simpara> a pointer to the GParameter array that holds the properties.
+  (Used for both input and output.  This may point to a <link linkend="NULL:CAPS"><literal>NULL</literal></link> pointer if
+  there are no properties collected yet.)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>p_n_params</parameter>&nbsp;:</term>
+<listitem><simpara> a pointer to the number of properties collected.  (Used for
+  both input and output.)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_property_name</parameter>&nbsp;:</term>
+<listitem><simpara> the name of the first property being set, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>var_args</parameter>&nbsp;:</term>
+<listitem><simpara> a va_list holding the remainder of the property names and
+  values, terminated by a <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-property-settings-free" role="function">
+<title>gsf_property_settings_free ()</title>
+<indexterm zone="gsf-property-settings-free"><primary>gsf_property_settings_free</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_property_settings_free          (<link linkend="GParameter">GParameter</link> *params,
+                                                         <link linkend="size-t">size_t</link> n_params);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>params</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_params</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

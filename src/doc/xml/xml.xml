@@ -1,0 +1,1119 @@
+<refentry id="gsf-XML-and-libxml">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-XML-and-libxml.top_of_page">XML and libxml</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>XML and libxml</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-XML-and-libxml.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfXMLOut"/>
+<synopsis>
+                    <link linkend="GsfXMLIn">GsfXMLIn</link>;
+                    <link linkend="GsfXMLInDoc">GsfXMLInDoc</link>;
+<link linkend="gboolean">gboolean</link>            (<link linkend="GsfXMLInUnknownFunc">*GsfXMLInUnknownFunc</link>)              (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="xmlChar">xmlChar</link> const *elem,
+                                                         <link linkend="xmlChar">xmlChar</link> const **attrs);
+                    <link linkend="GsfXMLInNS">GsfXMLInNS</link>;
+                    <link linkend="GsfXMLInNode">GsfXMLInNode</link>;
+<link linkend="void">void</link>                (<link linkend="GsfXMLInExtDtor">*GsfXMLInExtDtor</link>)                  (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="gpointer">gpointer</link> old_state);
+enum                <link linkend="GsfXMLContent">GsfXMLContent</link>;
+                    <link linkend="GsfXMLBlob">GsfXMLBlob</link>;
+                    <link linkend="GsfInputHTTP">GsfInputHTTP</link>;
+<link linkend="gboolean">gboolean</link>            (<link linkend="GsfXMLProbeFunc">*GsfXMLProbeFunc</link>)                  (const <link linkend="xmlChar">xmlChar</link> *name,
+                                                         const <link linkend="xmlChar">xmlChar</link> *prefix,
+                                                         const <link linkend="xmlChar">xmlChar</link> *URI,
+                                                         <link linkend="int">int</link> nb_namespaces,
+                                                         const <link linkend="xmlChar">xmlChar</link> **namespaces,
+                                                         <link linkend="int">int</link> nb_attributes,
+                                                         <link linkend="int">int</link> nb_defaulted,
+                                                         const <link linkend="xmlChar">xmlChar</link> **attributes);
+#define             <link linkend="GSF-XML-IN-NODE-FULL:CAPS">GSF_XML_IN_NODE_FULL</link>                (parent_id, id, ns, name, has_content, 	
+                                                         			     share_children_with_parent, check_ns, start, end, user)
+#define             <link linkend="GSF-XML-IN-NODE:CAPS">GSF_XML_IN_NODE</link>                     (parent_id, id, ns, name, has_content, start, end)
+#define             <link linkend="GSF-XML-IN-NODE-END:CAPS">GSF_XML_IN_NODE_END</link>
+#define             <link linkend="GSF-XML-IN-NS:CAPS">GSF_XML_IN_NS</link>                       (id, uri)
+#define             <link linkend="GSF-XML-IN-NS-END:CAPS">GSF_XML_IN_NS_END</link>
+<link linkend="GsfXMLInDoc">GsfXMLInDoc</link>*        <link linkend="gsf-xml-in-doc-new">gsf_xml_in_doc_new</link>                  (<link linkend="GsfXMLInNode">GsfXMLInNode</link> const *nodes,
+                                                         <link linkend="GsfXMLInNS">GsfXMLInNS</link> const *ns);
+<link linkend="void">void</link>                <link linkend="gsf-xml-in-doc-free">gsf_xml_in_doc_free</link>                 (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc);
+<link linkend="void">void</link>                <link linkend="gsf-xml-in-doc-add-nodes">gsf_xml_in_doc_add_nodes</link>            (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc,
+                                                         <link linkend="GsfXMLInNode">GsfXMLInNode</link> const *nodes);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-xml-in-doc-parse">gsf_xml_in_doc_parse</link>                (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc,
+                                                         <link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="gpointer">gpointer</link> user_state);
+<link linkend="void">void</link>                <link linkend="gsf-xml-in-doc-set-unknown-handler">gsf_xml_in_doc_set_unknown_handler</link>  (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc,
+                                                         <link linkend="GsfXMLInUnknownFunc">GsfXMLInUnknownFunc</link> handler);
+<link linkend="void">void</link>                <link linkend="gsf-xml-in-push-state">gsf_xml_in_push_state</link>               (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="GsfXMLInDoc">GsfXMLInDoc</link> const *doc,
+                                                         <link linkend="gpointer">gpointer</link> new_state,
+                                                         <link linkend="GsfXMLInExtDtor">GsfXMLInExtDtor</link> dtor,
+                                                         <link linkend="xmlChar">xmlChar</link> const **attrs);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-xml-in-namecmp">gsf_xml_in_namecmp</link>                  (<link linkend="GsfXMLIn">GsfXMLIn</link> const *xin,
+                                                         <link linkend="char">char</link> const *str,
+                                                         unsigned <link linkend="int">int</link> ns_id,
+                                                         <link linkend="char">char</link> const *name);
+<link linkend="char">char</link>const  *        <link linkend="gsf-xml-in-check-ns">gsf_xml_in_check_ns</link>                 (<link linkend="GsfXMLIn">GsfXMLIn</link> const *xin,
+                                                         <link linkend="char">char</link> const *str,
+                                                         unsigned <link linkend="int">int</link> ns_id);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-xml-in-get-input">gsf_xml_in_get_input</link>                (<link linkend="GsfXMLIn">GsfXMLIn</link> const *xin);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-xml-probe">gsf_xml_probe</link>                       (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="GsfXMLProbeFunc">GsfXMLProbeFunc</link> startElement);
+
+                    <link linkend="GsfXMLOut-struct">GsfXMLOut</link>;
+<link linkend="GsfXMLOut">GsfXMLOut</link>*          <link linkend="gsf-xml-out-new">gsf_xml_out_new</link>                     (<link linkend="GsfOutput">GsfOutput</link> *output);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-set-doc-type">gsf_xml_out_set_doc_type</link>            (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *type);
+<link linkend="GsfOutput">GsfOutput</link>*          <link linkend="gsf-xml-out-get-output">gsf_xml_out_get_output</link>              (<link linkend="GsfXMLOut">GsfXMLOut</link> const *xout);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-start-element">gsf_xml_out_start_element</link>           (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id);
+<link linkend="char">char</link>const *         <link linkend="gsf-xml-out-end-element">gsf_xml_out_end_element</link>             (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-cstr">gsf_xml_out_add_cstr</link>                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="char">char</link> const *val_utf8);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-cstr-unchecked">gsf_xml_out_add_cstr_unchecked</link>      (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="char">char</link> const *val_utf8);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-bool">gsf_xml_out_add_bool</link>                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="gboolean">gboolean</link> val);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-int">gsf_xml_out_add_int</link>                 (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="int">int</link> val);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-uint">gsf_xml_out_add_uint</link>                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         unsigned <link linkend="int">int</link> val);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-float">gsf_xml_out_add_float</link>               (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="double">double</link> val,
+                                                         <link linkend="int">int</link> precision);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-enum">gsf_xml_out_add_enum</link>                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GType">GType</link> etype,
+                                                         <link linkend="gint">gint</link> val);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-color">gsf_xml_out_add_color</link>               (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         unsigned <link linkend="int">int</link> r,
+                                                         unsigned <link linkend="int">int</link> g,
+                                                         unsigned <link linkend="int">int</link> b);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-base64">gsf_xml_out_add_base64</link>              (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="guint8">guint8</link> const *data,
+                                                         unsigned <link linkend="int">int</link> len);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-add-gvalue">gsf_xml_out_add_gvalue</link>              (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GValue">GValue</link> const *val);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-simple-element">gsf_xml_out_simple_element</link>          (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="char">char</link> const *content);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-simple-float-element">gsf_xml_out_simple_float_element</link>    (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="double">double</link> val,
+                                                         <link linkend="int">int</link> precision);
+<link linkend="void">void</link>                <link linkend="gsf-xml-out-simple-int-element">gsf_xml_out_simple_int_element</link>      (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="int">int</link> val);
+
+<link linkend="gchar">gchar</link>*              <link linkend="gsf-input-http-get-content-type">gsf_input_http_get_content_type</link>     (<link linkend="GsfInputHTTP">GsfInputHTTP</link> *input);
+<link linkend="GType">GType</link>               <link linkend="gsf-input-http-get-type">gsf_input_http_get_type</link>             (void);
+<link linkend="gchar">gchar</link>*              <link linkend="gsf-input-http-get-url">gsf_input_http_get_url</link>              (<link linkend="GsfInputHTTP">GsfInputHTTP</link> *input);
+
+<link linkend="xmlParserCtxt">xmlParserCtxt</link>*      <link linkend="gsf-xml-parser-context">gsf_xml_parser_context</link>              (<link linkend="GsfInput">GsfInput</link> *input);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-xml-gvalue-from-str">gsf_xml_gvalue_from_str</link>             (<link linkend="GValue">GValue</link> *res,
+                                                         <link linkend="GType">GType</link> t,
+                                                         <link linkend="char">char</link> const *str);
+<link linkend="int">int</link>                 <link linkend="gsf-xmlDocFormatDump">gsf_xmlDocFormatDump</link>                (<link linkend="GsfOutput">GsfOutput</link> *output,
+                                                         <link linkend="xmlDoc">xmlDoc</link> *cur,
+                                                         <link linkend="char">char</link> const *encoding,
+                                                         <link linkend="gboolean">gboolean</link> format);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gsf-XML-and-libxml.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GsfXMLOut
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="gsf-XML-and-libxml.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GsfXMLOut--pretty-print">pretty-print</link>&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="gsf-XML-and-libxml.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-XML-and-libxml.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfXMLIn" role="struct">
+<title>GsfXMLIn</title>
+<indexterm zone="GsfXMLIn"><primary>GsfXMLIn</primary></indexterm><programlisting>typedef struct {
+	/* public state : read only */
+	gpointer	    user_state;
+	GString		   *content;
+	GsfXMLInDoc  const *doc;
+	GsfXMLInNode const *node;	/* current node (not on the stack) */
+	GSList	 	   *node_stack;	/* stack of GsfXMLInNode */
+} GsfXMLIn;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfXMLInDoc" role="struct">
+<title>GsfXMLInDoc</title>
+<indexterm zone="GsfXMLInDoc"><primary>GsfXMLInDoc</primary></indexterm><programlisting>typedef struct _GsfXMLInDoc GsfXMLInDoc;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfXMLInUnknownFunc" role="function">
+<title>GsfXMLInUnknownFunc ()</title>
+<indexterm zone="GsfXMLInUnknownFunc"><primary>GsfXMLInUnknownFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GsfXMLInUnknownFunc)              (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="xmlChar">xmlChar</link> const *elem,
+                                                         <link linkend="xmlChar">xmlChar</link> const **attrs);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xin</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>elem</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attrs</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfXMLInNS" role="struct">
+<title>GsfXMLInNS</title>
+<indexterm zone="GsfXMLInNS"><primary>GsfXMLInNS</primary></indexterm><programlisting>typedef struct {
+	char const *uri;
+	unsigned    ns_id;
+} GsfXMLInNS;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfXMLInNode" role="struct">
+<title>GsfXMLInNode</title>
+<indexterm zone="GsfXMLInNode"><primary>GsfXMLInNode</primary></indexterm><programlisting>typedef struct {
+	char const *id;		/* unique in the entire tree */
+	int	    ns_id;
+	char const *name;
+	char const *parent_id;
+	void (*start) (GsfXMLIn *xin, xmlChar const **attrs);
+	void (*end)   (GsfXMLIn *xin, GsfXMLBlob *unknown);
+
+	union {
+		int	    v_int;
+		gboolean    v_bool;
+		gpointer    v_blob;
+		char const *v_str;
+	} user_data;
+	GsfXMLContent has_content;
+
+	unsigned int check_children_for_ns : 1;
+	unsigned int share_children_with_parent : 1;
+} GsfXMLInNode;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfXMLInExtDtor" role="function">
+<title>GsfXMLInExtDtor ()</title>
+<indexterm zone="GsfXMLInExtDtor"><primary>GsfXMLInExtDtor</primary></indexterm><programlisting><link linkend="void">void</link>                (*GsfXMLInExtDtor)                  (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="gpointer">gpointer</link> old_state);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xin</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>old_state</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfXMLContent" role="enum">
+<title>enum GsfXMLContent</title>
+<indexterm zone="GsfXMLContent"><primary>GsfXMLContent</primary></indexterm><programlisting>typedef enum {
+	GSF_XML_NO_CONTENT = FALSE,
+	GSF_XML_CONTENT,
+	GSF_XML_SHARED_CONTENT
+} GsfXMLContent;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfXMLBlob" role="struct">
+<title>GsfXMLBlob</title>
+<indexterm zone="GsfXMLBlob"><primary>GsfXMLBlob</primary></indexterm><programlisting>typedef struct _GsfXMLBlob GsfXMLBlob;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfInputHTTP" role="struct">
+<title>GsfInputHTTP</title>
+<indexterm zone="GsfInputHTTP"><primary>GsfInputHTTP</primary></indexterm><programlisting>typedef struct _GsfInputHTTP GsfInputHTTP;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GsfXMLProbeFunc" role="function">
+<title>GsfXMLProbeFunc ()</title>
+<indexterm zone="GsfXMLProbeFunc"><primary>GsfXMLProbeFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GsfXMLProbeFunc)                  (const <link linkend="xmlChar">xmlChar</link> *name,
+                                                         const <link linkend="xmlChar">xmlChar</link> *prefix,
+                                                         const <link linkend="xmlChar">xmlChar</link> *URI,
+                                                         <link linkend="int">int</link> nb_namespaces,
+                                                         const <link linkend="xmlChar">xmlChar</link> **namespaces,
+                                                         <link linkend="int">int</link> nb_attributes,
+                                                         <link linkend="int">int</link> nb_defaulted,
+                                                         const <link linkend="xmlChar">xmlChar</link> **attributes);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>URI</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>nb_namespaces</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>namespaces</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>nb_attributes</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>nb_defaulted</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-XML-IN-NODE-FULL:CAPS" role="macro">
+<title>GSF_XML_IN_NODE_FULL()</title>
+<indexterm zone="GSF-XML-IN-NODE-FULL:CAPS"><primary>GSF_XML_IN_NODE_FULL</primary></indexterm><programlisting>#define             GSF_XML_IN_NODE_FULL(parent_id, id, ns, name, has_content, 	\
+            			     share_children_with_parent, check_ns, start, end, user)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent_id</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ns</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>has_content</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>share_children_with_parent</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>check_ns</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>start</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>end</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-XML-IN-NODE:CAPS" role="macro">
+<title>GSF_XML_IN_NODE()</title>
+<indexterm zone="GSF-XML-IN-NODE:CAPS"><primary>GSF_XML_IN_NODE</primary></indexterm><programlisting>#define             GSF_XML_IN_NODE(parent_id, id, ns, name, has_content, start, end)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent_id</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ns</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>has_content</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>start</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>end</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-XML-IN-NODE-END:CAPS" role="macro">
+<title>GSF_XML_IN_NODE_END</title>
+<indexterm zone="GSF-XML-IN-NODE-END:CAPS"><primary>GSF_XML_IN_NODE_END</primary></indexterm><programlisting>#define             GSF_XML_IN_NODE_END</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="GSF-XML-IN-NS:CAPS" role="macro">
+<title>GSF_XML_IN_NS()</title>
+<indexterm zone="GSF-XML-IN-NS:CAPS"><primary>GSF_XML_IN_NS</primary></indexterm><programlisting>#define             GSF_XML_IN_NS(id, uri)</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>uri</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GSF-XML-IN-NS-END:CAPS" role="macro">
+<title>GSF_XML_IN_NS_END</title>
+<indexterm zone="GSF-XML-IN-NS-END:CAPS"><primary>GSF_XML_IN_NS_END</primary></indexterm><programlisting>#define             GSF_XML_IN_NS_END</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-xml-in-doc-new" role="function">
+<title>gsf_xml_in_doc_new ()</title>
+<indexterm zone="gsf-xml-in-doc-new"><primary>gsf_xml_in_doc_new</primary></indexterm><programlisting><link linkend="GsfXMLInDoc">GsfXMLInDoc</link>*        gsf_xml_in_doc_new                  (<link linkend="GsfXMLInNode">GsfXMLInNode</link> const *nodes,
+                                                         <link linkend="GsfXMLInNS">GsfXMLInNS</link> const *ns);</programlisting>
+<para>
+Combine the nodes in the <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array starting at <parameter>nodes</parameter> with the
+name spaces in the <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array starting at <parameter>ns</parameter>.  Prepare the
+data structures necessary to validate a doument based on that description.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>nodes</parameter>&nbsp;:</term>
+<listitem><simpara> an array of node descriptors
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ns</parameter>&nbsp;:</term>
+<listitem><simpara> an array of namespace identifiers
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-doc-free" role="function">
+<title>gsf_xml_in_doc_free ()</title>
+<indexterm zone="gsf-xml-in-doc-free"><primary>gsf_xml_in_doc_free</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_in_doc_free                 (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc);</programlisting>
+<para>
+Free up resources</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>doc</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInDoc"><type>GsfXMLInDoc</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-doc-add-nodes" role="function">
+<title>gsf_xml_in_doc_add_nodes ()</title>
+<indexterm zone="gsf-xml-in-doc-add-nodes"><primary>gsf_xml_in_doc_add_nodes</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_in_doc_add_nodes            (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc,
+                                                         <link linkend="GsfXMLInNode">GsfXMLInNode</link> const *nodes);</programlisting>
+<para>
+Adds additional nodes to the structure of <parameter>doc</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>doc</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInDoc"><type>GsfXMLInDoc</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>nodes</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array of <link linkend="GsfXMLInNode"><type>GsfXMLInNode</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-doc-parse" role="function">
+<title>gsf_xml_in_doc_parse ()</title>
+<indexterm zone="gsf-xml-in-doc-parse"><primary>gsf_xml_in_doc_parse</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_xml_in_doc_parse                (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc,
+                                                         <link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="gpointer">gpointer</link> user_state);</programlisting>
+<para>
+Read an xml document from <parameter>input</parameter> and parse based on the the descriptor in
+<parameter>doc</parameter></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>doc</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInDoc"><type>GsfXMLInDoc</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_state</parameter>&nbsp;:</term>
+<listitem><simpara> arbitrary content stored in the parser
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-doc-set-unknown-handler" role="function">
+<title>gsf_xml_in_doc_set_unknown_handler ()</title>
+<indexterm zone="gsf-xml-in-doc-set-unknown-handler"><primary>gsf_xml_in_doc_set_unknown_handler</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_in_doc_set_unknown_handler  (<link linkend="GsfXMLInDoc">GsfXMLInDoc</link> *doc,
+                                                         <link linkend="GsfXMLInUnknownFunc">GsfXMLInUnknownFunc</link> handler);</programlisting>
+<para>
+Call the function <parameter>handler</parameter> when an unexpected child node is found</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>doc</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInDoc"><type>GsfXMLInDoc</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>handler</parameter>&nbsp;:</term>
+<listitem><simpara> The function to call
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-push-state" role="function">
+<title>gsf_xml_in_push_state ()</title>
+<indexterm zone="gsf-xml-in-push-state"><primary>gsf_xml_in_push_state</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_in_push_state               (<link linkend="GsfXMLIn">GsfXMLIn</link> *xin,
+                                                         <link linkend="GsfXMLInDoc">GsfXMLInDoc</link> const *doc,
+                                                         <link linkend="gpointer">gpointer</link> new_state,
+                                                         <link linkend="GsfXMLInExtDtor">GsfXMLInExtDtor</link> dtor,
+                                                         <link linkend="xmlChar">xmlChar</link> const **attrs);</programlisting>
+<para>
+Take the first node from <parameter>doc</parameter> as the current node and call it's start handler.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xin</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLIn"><type>GsfXMLIn</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>doc</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInDoc"><type>GsfXMLInDoc</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>new_state</parameter>&nbsp;:</term>
+<listitem><simpara> arbitrary content for the parser
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dtor</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLInExtDtor"><type>GsfXMLInExtDtor</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attrs</parameter>&nbsp;:</term>
+<listitem><simpara> array of xmlChar const *
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-namecmp" role="function">
+<title>gsf_xml_in_namecmp ()</title>
+<indexterm zone="gsf-xml-in-namecmp"><primary>gsf_xml_in_namecmp</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_xml_in_namecmp                  (<link linkend="GsfXMLIn">GsfXMLIn</link> const *xin,
+                                                         <link linkend="char">char</link> const *str,
+                                                         unsigned <link linkend="int">int</link> ns_id,
+                                                         <link linkend="char">char</link> const *name);</programlisting>
+<para>
+Checks to see if <parameter>str</parameter> is the same as <parameter>ns_id</parameter>::<parameter>name</parameter> with either an explicit
+namespace or the current default namespace.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xin</parameter>&nbsp;:</term>
+<listitem><simpara> The <link linkend="GsfXMLIn"><type>GsfXMLIn</type></link> we are reading from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>str</parameter>&nbsp;:</term>
+<listitem><simpara> The potentially namespace qualified node name.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ns_id</parameter>&nbsp;:</term>
+<listitem><simpara> The name space id to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> The target node name
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if <parameter>str</parameter> == <parameter>ns_id</parameter>:<parameter>name</parameter> according to <parameter>state</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-check-ns" role="function">
+<title>gsf_xml_in_check_ns ()</title>
+<indexterm zone="gsf-xml-in-check-ns"><primary>gsf_xml_in_check_ns</primary></indexterm><programlisting><link linkend="char">char</link>const  *        gsf_xml_in_check_ns                 (<link linkend="GsfXMLIn">GsfXMLIn</link> const *xin,
+                                                         <link linkend="char">char</link> const *str,
+                                                         unsigned <link linkend="int">int</link> ns_id);</programlisting>
+<para>
+According to <parameter>state</parameter> is <parameter>str</parameter> in the namespace <parameter>ns_id</parameter> ?</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xin</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLIn"><type>GsfXMLIn</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>str</parameter>&nbsp;:</term>
+<listitem><simpara> string to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ns_id</parameter>&nbsp;:</term>
+<listitem><simpara> the namespace id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a pointer to <parameter>str</parameter> after the namespace if successful,
+	otherwise <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-in-get-input" role="function">
+<title>gsf_xml_in_get_input ()</title>
+<indexterm zone="gsf-xml-in-get-input"><primary>gsf_xml_in_get_input</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_xml_in_get_input                (<link linkend="GsfXMLIn">GsfXMLIn</link> const *xin);</programlisting>
+<para>
+(New in 1.14.2)</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xin</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLIn"><type>GsfXMLIn</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> (but does not reference) the stream being parsed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-probe" role="function">
+<title>gsf_xml_probe ()</title>
+<indexterm zone="gsf-xml-probe"><primary>gsf_xml_probe</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_xml_probe                       (<link linkend="GsfInput">GsfInput</link> *input,
+                                                         <link linkend="GsfXMLProbeFunc">GsfXMLProbeFunc</link> startElement);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>startElement</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfXMLOut-struct" role="struct">
+<title>GsfXMLOut</title>
+<indexterm zone="GsfXMLOut-struct"><primary>GsfXMLOut</primary></indexterm><programlisting>typedef struct _GsfXMLOut GsfXMLOut;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-xml-out-new" role="function">
+<title>gsf_xml_out_new ()</title>
+<indexterm zone="gsf-xml-out-new"><primary>gsf_xml_out_new</primary></indexterm><programlisting><link linkend="GsfXMLOut">GsfXMLOut</link>*          gsf_xml_out_new                     (<link linkend="GsfOutput">GsfOutput</link> *output);</programlisting>
+<para>
+Create an XML output stream.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>output</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutput"><type>GsfOutput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-set-doc-type" role="function">
+<title>gsf_xml_out_set_doc_type ()</title>
+<indexterm zone="gsf-xml-out-set-doc-type"><primary>gsf_xml_out_set_doc_type</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_set_doc_type            (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *type);</programlisting>
+<para>
+Store some optional some &lt;!DOCTYPE .. &gt; content</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> the document type declaration
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-get-output" role="function">
+<title>gsf_xml_out_get_output ()</title>
+<indexterm zone="gsf-xml-out-get-output"><primary>gsf_xml_out_get_output</primary></indexterm><programlisting><link linkend="GsfOutput">GsfOutput</link>*          gsf_xml_out_get_output              (<link linkend="GsfXMLOut">GsfXMLOut</link> const *xout);</programlisting>
+<para>
+Get the <link linkend="GsfInput"><type>GsfInput</type></link> we are parsing from.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link> or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-start-element" role="function">
+<title>gsf_xml_out_start_element ()</title>
+<indexterm zone="gsf-xml-out-start-element"><primary>gsf_xml_out_start_element</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_start_element           (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id);</programlisting>
+<para>
+Output a start element <parameter>id</parameter>, if necessary preceeded by an XML declaration.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> Element name
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-end-element" role="function">
+<title>gsf_xml_out_end_element ()</title>
+<indexterm zone="gsf-xml-out-end-element"><primary>gsf_xml_out_end_element</primary></indexterm><programlisting><link linkend="char">char</link>const *         gsf_xml_out_end_element             (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout);</programlisting>
+<para>
+Closes/ends an XML element.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the element that has been closed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-cstr" role="function">
+<title>gsf_xml_out_add_cstr ()</title>
+<indexterm zone="gsf-xml-out-add-cstr"><primary>gsf_xml_out_add_cstr</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_cstr                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="char">char</link> const *val_utf8);</programlisting>
+<para>
+dump <parameter>val_utf8</parameter> to an attribute named <parameter>id</parameter> or as the nodes content escaping
+characters as necessary.  If <parameter>val_utf8</parameter> is NULL do nothing (no warning, no
+output)</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val_utf8</parameter>&nbsp;:</term>
+<listitem><simpara> a utf8 encoded string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-cstr-unchecked" role="function">
+<title>gsf_xml_out_add_cstr_unchecked ()</title>
+<indexterm zone="gsf-xml-out-add-cstr-unchecked"><primary>gsf_xml_out_add_cstr_unchecked</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_cstr_unchecked      (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="char">char</link> const *val_utf8);</programlisting>
+<para>
+dump <parameter>val_utf8</parameter> to an attribute named <parameter>id</parameter> without checking to see if the
+content needs escaping.  A useful performance enhancement when the
+application knows that structure of the content well.  If <parameter>val_utf8</parameter> is NULL
+do nothing (no warning, no output)</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val_utf8</parameter>&nbsp;:</term>
+<listitem><simpara> a utf8 encoded string to export
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-bool" role="function">
+<title>gsf_xml_out_add_bool ()</title>
+<indexterm zone="gsf-xml-out-add-bool"><primary>gsf_xml_out_add_bool</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_bool                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="gboolean">gboolean</link> val);</programlisting>
+<para>
+dump boolean value <parameter>val</parameter> to an attribute named <parameter>id</parameter> or as the nodes content
+Use '1' or '0' to simplify import</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> a boolean
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-int" role="function">
+<title>gsf_xml_out_add_int ()</title>
+<indexterm zone="gsf-xml-out-add-int"><primary>gsf_xml_out_add_int</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_int                 (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="int">int</link> val);</programlisting>
+<para>
+dump integer value <parameter>val</parameter> to an attribute named <parameter>id</parameter> or as the nodes content</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> the value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-uint" role="function">
+<title>gsf_xml_out_add_uint ()</title>
+<indexterm zone="gsf-xml-out-add-uint"><primary>gsf_xml_out_add_uint</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_uint                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         unsigned <link linkend="int">int</link> val);</programlisting>
+<para>
+dump unsigned integer value <parameter>val</parameter> to an attribute named <parameter>id</parameter> or as the nodes
+content</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> the value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-float" role="function">
+<title>gsf_xml_out_add_float ()</title>
+<indexterm zone="gsf-xml-out-add-float"><primary>gsf_xml_out_add_float</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_float               (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="double">double</link> val,
+                                                         <link linkend="int">int</link> precision);</programlisting>
+<para>
+dump float value <parameter>val</parameter> to an attribute named <parameter>id</parameter> or as the nodes
+content with precision <parameter>precision</parameter>.  The number will be formattted
+according to the "C" locale.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> the value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>precision</parameter>&nbsp;:</term>
+<listitem><simpara> the number of significant digits to use, -1 meaning "enough".
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-enum" role="function">
+<title>gsf_xml_out_add_enum ()</title>
+<indexterm zone="gsf-xml-out-add-enum"><primary>gsf_xml_out_add_enum</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_enum                (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GType">GType</link> etype,
+                                                         <link linkend="gint">gint</link> val);</programlisting>
+<para>
+Output the name of value <parameter>val</parameter> of enumeration type <parameter>etype</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>etype</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GType"><type>GType</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> enum element number
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-color" role="function">
+<title>gsf_xml_out_add_color ()</title>
+<indexterm zone="gsf-xml-out-add-color"><primary>gsf_xml_out_add_color</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_color               (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         unsigned <link linkend="int">int</link> r,
+                                                         unsigned <link linkend="int">int</link> g,
+                                                         unsigned <link linkend="int">int</link> b);</programlisting>
+<para>
+dump Color <parameter>r</parameter>.<parameter>g</parameter>.<parameter>b</parameter> to an attribute named <parameter>id</parameter> or as the nodes content</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>r</parameter>&nbsp;:</term>
+<listitem><simpara> Red value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>g</parameter>&nbsp;:</term>
+<listitem><simpara> Green value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> Blue value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-base64" role="function">
+<title>gsf_xml_out_add_base64 ()</title>
+<indexterm zone="gsf-xml-out-add-base64"><primary>gsf_xml_out_add_base64</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_base64              (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="guint8">guint8</link> const *data,
+                                                         unsigned <link linkend="int">int</link> len);</programlisting>
+<para>
+dump <parameter>len</parameter> bytes in <parameter>data</parameter> into the content of node <parameter>id</parameter> using base64</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> Data to be written
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> Length of data
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-add-gvalue" role="function">
+<title>gsf_xml_out_add_gvalue ()</title>
+<indexterm zone="gsf-xml-out-add-gvalue"><primary>gsf_xml_out_add_gvalue</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_add_gvalue              (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="GValue">GValue</link> const *val);</programlisting>
+<para>
+Output the value of <parameter>val</parameter> as a string.  Does NOT store any type information
+with the string, just thevalue.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> optionally NULL for content
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GValue"><type>GValue</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-simple-element" role="function">
+<title>gsf_xml_out_simple_element ()</title>
+<indexterm zone="gsf-xml-out-simple-element"><primary>gsf_xml_out_simple_element</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_simple_element          (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="char">char</link> const *content);</programlisting>
+<para>
+Convenience routine to output a simple <parameter>id</parameter> element with content <parameter>content</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> Element name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>content</parameter>&nbsp;:</term>
+<listitem><simpara> Content of the element
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-simple-float-element" role="function">
+<title>gsf_xml_out_simple_float_element ()</title>
+<indexterm zone="gsf-xml-out-simple-float-element"><primary>gsf_xml_out_simple_float_element</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_simple_float_element    (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="double">double</link> val,
+                                                         <link linkend="int">int</link> precision);</programlisting>
+<para>
+Convenience routine to output an element <parameter>id</parameter> with float value <parameter>val</parameter> using
+<parameter>precision</parameter> significant digits.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> Element name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> Element value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>precision</parameter>&nbsp;:</term>
+<listitem><simpara> the number of significant digits to use, -1 meaning "enough".
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-out-simple-int-element" role="function">
+<title>gsf_xml_out_simple_int_element ()</title>
+<indexterm zone="gsf-xml-out-simple-int-element"><primary>gsf_xml_out_simple_int_element</primary></indexterm><programlisting><link linkend="void">void</link>                gsf_xml_out_simple_int_element      (<link linkend="GsfXMLOut">GsfXMLOut</link> *xout,
+                                                         <link linkend="char">char</link> const *id,
+                                                         <link linkend="int">int</link> val);</programlisting>
+<para>
+Convenience routine to output an element <parameter>id</parameter> with integer value <parameter>val</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>xout</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfXMLOut"><type>GsfXMLOut</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&nbsp;:</term>
+<listitem><simpara> Element name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> Element value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-http-get-content-type" role="function">
+<title>gsf_input_http_get_content_type ()</title>
+<indexterm zone="gsf-input-http-get-content-type"><primary>gsf_input_http_get_content_type</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gsf_input_http_get_content_type     (<link linkend="GsfInputHTTP">GsfInputHTTP</link> *input);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInputHTTP"><type>GsfInputHTTP</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an allocated string containing the Content-Type field of the HTTP response.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-http-get-type" role="function">
+<title>gsf_input_http_get_type ()</title>
+<indexterm zone="gsf-input-http-get-type"><primary>gsf_input_http_get_type</primary></indexterm><programlisting><link linkend="GType">GType</link>               gsf_input_http_get_type             (void);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-http-get-url" role="function">
+<title>gsf_input_http_get_url ()</title>
+<indexterm zone="gsf-input-http-get-url"><primary>gsf_input_http_get_url</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gsf_input_http_get_url              (<link linkend="GsfInputHTTP">GsfInputHTTP</link> *input);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInputHTTP"><type>GsfInputHTTP</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> an allocated string containing the URL used for input.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-parser-context" role="function">
+<title>gsf_xml_parser_context ()</title>
+<indexterm zone="gsf-xml-parser-context"><primary>gsf_xml_parser_context</primary></indexterm><programlisting><link linkend="xmlParserCtxt">xmlParserCtxt</link>*      gsf_xml_parser_context              (<link linkend="GsfInput">GsfInput</link> *input);</programlisting>
+<para>
+Create a libxml2 pull style parser context wrapper around gsf input <parameter>input</parameter>.
+This signature will probably change to supply a SAX structure.
+</para>
+<para>
+<note>This adds a reference to <parameter>input</parameter>.</note>
+<note>A simple wrapper around a cleaner implementation that will fold in
+when we add other api changes.  Its not worth bumping just for this.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>input</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInput"><type>GsfInput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A parser context or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xml-gvalue-from-str" role="function">
+<title>gsf_xml_gvalue_from_str ()</title>
+<indexterm zone="gsf-xml-gvalue-from-str"><primary>gsf_xml_gvalue_from_str</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_xml_gvalue_from_str             (<link linkend="GValue">GValue</link> *res,
+                                                         <link linkend="GType">GType</link> t,
+                                                         <link linkend="char">char</link> const *str);</programlisting>
+<para>
+Try to parse <parameter>str</parameter> as a value of type <parameter>t</parameter> into <parameter>res</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>res</parameter>&nbsp;:</term>
+<listitem><simpara> Result value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>t</parameter>&nbsp;:</term>
+<listitem><simpara> Type of data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>str</parameter>&nbsp;:</term>
+<listitem><simpara> Value string
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> True when parsing of <parameter>str</parameter> as a value of type <parameter>t</parameter> was succesfull;
+false otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-xmlDocFormatDump" role="function">
+<title>gsf_xmlDocFormatDump ()</title>
+<indexterm zone="gsf-xmlDocFormatDump"><primary>gsf_xmlDocFormatDump</primary></indexterm><programlisting><link linkend="int">int</link>                 gsf_xmlDocFormatDump                (<link linkend="GsfOutput">GsfOutput</link> *output,
+                                                         <link linkend="xmlDoc">xmlDoc</link> *cur,
+                                                         <link linkend="char">char</link> const *encoding,
+                                                         <link linkend="gboolean">gboolean</link> format);</programlisting>
+<para>
+Dumps the document <parameter>cur</parameter> into <parameter>output</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>output</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfOutput"><type>GsfOutput</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cur</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="xmlDocPtr"><type>xmlDocPtr</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>encoding</parameter>&nbsp;:</term>
+<listitem><simpara> The encoding to use.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> to reformat the output.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> status from xmlSaveFormatFileTo.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="gsf-XML-and-libxml.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GsfXMLOut--pretty-print"><title>The <literal>&quot;pretty-print&quot;</literal> property</title>
+<indexterm zone="GsfXMLOut--pretty-print"><primary>GsfXMLOut:pretty-print</primary></indexterm><programlisting>  &quot;pretty-print&quot;             <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Should the output auto-indent elements to make reading easier.</para><para>Default value: TRUE</para>
+</refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

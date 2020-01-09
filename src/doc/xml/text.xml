@@ -1,0 +1,278 @@
+<refentry id="gsf-Text">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-Text.top_of_page">Text</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Text</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-Text.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfInputTextline"/><anchor id="GsfOutputIconv"/><anchor id="GsfOutputCsv"/>
+<synopsis>
+                    <link linkend="GsfInputTextline-struct">GsfInputTextline</link>;
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-input-textline-new">gsf_input_textline_new</link>              (<link linkend="GsfInput">GsfInput</link> *source);
+unsigned <link linkend="char">char</link>*      <link linkend="gsf-input-textline-ascii-gets">gsf_input_textline_ascii_gets</link>       (<link linkend="GsfInputTextline">GsfInputTextline</link> *textline);
+<link linkend="guint8">guint8</link>*             <link linkend="gsf-input-textline-utf8-gets">gsf_input_textline_utf8_gets</link>        (<link linkend="GsfInputTextline">GsfInputTextline</link> *textline);
+                    <link linkend="GsfOutputIconv-struct">GsfOutputIconv</link>;
+<link linkend="GsfOutput">GsfOutput</link>*          <link linkend="gsf-output-iconv-new">gsf_output_iconv_new</link>                (<link linkend="GsfOutput">GsfOutput</link> *sink,
+                                                         <link linkend="char">char</link> const *dst,
+                                                         <link linkend="char">char</link> const *src);
+                    <link linkend="GsfOutputCsv-struct">GsfOutputCsv</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-output-csv-write-eol">gsf_output_csv_write_eol</link>            (<link linkend="GsfOutputCsv">GsfOutputCsv</link> *csv);
+<link linkend="gboolean">gboolean</link>            <link linkend="gsf-output-csv-write-field">gsf_output_csv_write_field</link>          (<link linkend="GsfOutputCsv">GsfOutputCsv</link> *csv,
+                                                         <link linkend="char">char</link> const *field,
+                                                         <link linkend="size-t">size_t</link> len);
+enum                <link linkend="GsfOutputCsvQuotingMode">GsfOutputCsvQuotingMode</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gsf-Text.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfInput">GsfInput</link>
+         +----GsfInputTextline
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfOutput">GsfOutput</link>
+         +----GsfOutputIconv
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfOutput">GsfOutput</link>
+         +----GsfOutputCsv
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+<refsect1 id="gsf-Text.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GsfOutputIconv--fallback">fallback</link>&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="GsfOutputIconv--input-charset">input-charset</link>&quot;            <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GsfOutputIconv--output-charset">output-charset</link>&quot;           <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GsfOutputIconv--sink">sink</link>&quot;                     <link linkend="GsfOutput">GsfOutput</link>*            : Read / Write / Construct Only
+  &quot;<link linkend="GsfOutputCsv--eol">eol</link>&quot;                      <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GsfOutputCsv--quote">quote</link>&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GsfOutputCsv--quoting-mode">quoting-mode</link>&quot;             <link linkend="GsfOutputCsvQuotingMode">GsfOutputCsvQuotingMode</link>  : Read / Write / Construct
+  &quot;<link linkend="GsfOutputCsv--quoting-on-whitespace">quoting-on-whitespace</link>&quot;    <link linkend="gboolean">gboolean</link>              : Read / Write
+  &quot;<link linkend="GsfOutputCsv--quoting-triggers">quoting-triggers</link>&quot;         <link linkend="gchar">gchar</link>*                : Read / Write
+  &quot;<link linkend="GsfOutputCsv--separator">separator</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GsfOutputCsv--sink">sink</link>&quot;                     <link linkend="GsfOutput">GsfOutput</link>*            : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="gsf-Text.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-Text.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfInputTextline-struct" role="struct">
+<title>GsfInputTextline</title>
+<indexterm zone="GsfInputTextline-struct"><primary>GsfInputTextline</primary></indexterm><programlisting>typedef struct _GsfInputTextline GsfInputTextline;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-input-textline-new" role="function">
+<title>gsf_input_textline_new ()</title>
+<indexterm zone="gsf-input-textline-new"><primary>gsf_input_textline_new</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_input_textline_new              (<link linkend="GsfInput">GsfInput</link> *source);</programlisting>
+<para>
+<note>This adds a reference to <parameter>source</parameter>.</note></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>source</parameter>&nbsp;:</term>
+<listitem><simpara> in some combination of ascii and utf8
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new file or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-textline-ascii-gets" role="function">
+<title>gsf_input_textline_ascii_gets ()</title>
+<indexterm zone="gsf-input-textline-ascii-gets"><primary>gsf_input_textline_ascii_gets</primary></indexterm><programlisting>unsigned <link linkend="char">char</link>*      gsf_input_textline_ascii_gets       (<link linkend="GsfInputTextline">GsfInputTextline</link> *textline);</programlisting>
+<para>
+A utility routine to read things line by line from the underlying source.
+Trailing newlines and carriage returns are stripped, and the resultant buffer
+can be edited.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>textline</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInputTextline"><type>GsfInputTextline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the string read, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> on eof.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-input-textline-utf8-gets" role="function">
+<title>gsf_input_textline_utf8_gets ()</title>
+<indexterm zone="gsf-input-textline-utf8-gets"><primary>gsf_input_textline_utf8_gets</primary></indexterm><programlisting><link linkend="guint8">guint8</link>*             gsf_input_textline_utf8_gets        (<link linkend="GsfInputTextline">GsfInputTextline</link> *textline);</programlisting>
+<para>
+A utility routine to read things line by line from the underlying source.
+Trailing newlines and carriage returns are stripped, and the resultant buffer
+can be edited.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>textline</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInputTextline"><type>GsfInputTextline</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the string read, or <link linkend="NULL:CAPS"><literal>NULL</literal></link> on eof.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfOutputIconv-struct" role="struct">
+<title>GsfOutputIconv</title>
+<indexterm zone="GsfOutputIconv-struct"><primary>GsfOutputIconv</primary></indexterm><programlisting>typedef struct _GsfOutputIconv GsfOutputIconv;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-output-iconv-new" role="function">
+<title>gsf_output_iconv_new ()</title>
+<indexterm zone="gsf-output-iconv-new"><primary>gsf_output_iconv_new</primary></indexterm><programlisting><link linkend="GsfOutput">GsfOutput</link>*          gsf_output_iconv_new                (<link linkend="GsfOutput">GsfOutput</link> *sink,
+                                                         <link linkend="char">char</link> const *dst,
+                                                         <link linkend="char">char</link> const *src);</programlisting>
+<para>
+Adds a reference to <parameter>sink</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>sink</parameter>&nbsp;:</term>
+<listitem><simpara> The underlying data source.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dst</parameter>&nbsp;:</term>
+<listitem><simpara> The target character set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src</parameter>&nbsp;:</term>
+<listitem><simpara> The source character set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new GsfOutput object or <link linkend="NULL:CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfOutputCsv-struct" role="struct">
+<title>GsfOutputCsv</title>
+<indexterm zone="GsfOutputCsv-struct"><primary>GsfOutputCsv</primary></indexterm><programlisting>typedef struct _GsfOutputCsv GsfOutputCsv;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-output-csv-write-eol" role="function">
+<title>gsf_output_csv_write_eol ()</title>
+<indexterm zone="gsf-output-csv-write-eol"><primary>gsf_output_csv_write_eol</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_output_csv_write_eol            (<link linkend="GsfOutputCsv">GsfOutputCsv</link> *csv);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>csv</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-output-csv-write-field" role="function">
+<title>gsf_output_csv_write_field ()</title>
+<indexterm zone="gsf-output-csv-write-field"><primary>gsf_output_csv_write_field</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gsf_output_csv_write_field          (<link linkend="GsfOutputCsv">GsfOutputCsv</link> *csv,
+                                                         <link linkend="char">char</link> const *field,
+                                                         <link linkend="size-t">size_t</link> len);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>csv</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>field</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GsfOutputCsvQuotingMode" role="enum">
+<title>enum GsfOutputCsvQuotingMode</title>
+<indexterm zone="GsfOutputCsvQuotingMode"><primary>GsfOutputCsvQuotingMode</primary></indexterm><programlisting>typedef enum {
+	GSF_OUTPUT_CSV_QUOTING_MODE_NEVER,
+	GSF_OUTPUT_CSV_QUOTING_MODE_AUTO,
+	GSF_OUTPUT_CSV_QUOTING_MODE_ALWAYS
+} GsfOutputCsvQuotingMode;
+</programlisting>
+<para>
+
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="gsf-Text.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GsfOutputIconv--fallback"><title>The <literal>&quot;fallback&quot;</literal> property</title>
+<indexterm zone="GsfOutputIconv--fallback"><primary>GsfOutputIconv:fallback</primary></indexterm><programlisting>  &quot;fallback&quot;                 <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>
+Either NULL or a UTF-8 string (representable in the target encoding)
+to convert and output in place of characters that cannot be represented
+in the target encoding.  NULL means use \u1234 or \U12345678 format.</para>
+<para>
+
+</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GsfOutputIconv--input-charset"><title>The <literal>&quot;input-charset&quot;</literal> property</title>
+<indexterm zone="GsfOutputIconv--input-charset"><primary>GsfOutputIconv:input-charset</primary></indexterm><programlisting>  &quot;input-charset&quot;            <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>The character set to convert from.</para><para>Default value: "UTF-8"</para>
+</refsect2>
+<refsect2 id="GsfOutputIconv--output-charset"><title>The <literal>&quot;output-charset&quot;</literal> property</title>
+<indexterm zone="GsfOutputIconv--output-charset"><primary>GsfOutputIconv:output-charset</primary></indexterm><programlisting>  &quot;output-charset&quot;           <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>The character set to convert to.</para><para>Default value: "UTF-8"</para>
+</refsect2>
+<refsect2 id="GsfOutputIconv--sink"><title>The <literal>&quot;sink&quot;</literal> property</title>
+<indexterm zone="GsfOutputIconv--sink"><primary>GsfOutputIconv:sink</primary></indexterm><programlisting>  &quot;sink&quot;                     <link linkend="GsfOutput">GsfOutput</link>*            : Read / Write / Construct Only</programlisting>
+<para>Where the converted data is written.</para></refsect2>
+<refsect2 id="GsfOutputCsv--eol"><title>The <literal>&quot;eol&quot;</literal> property</title>
+<indexterm zone="GsfOutputCsv--eol"><primary>GsfOutputCsv:eol</primary></indexterm><programlisting>  &quot;eol&quot;                      <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>The end-of-line marker.</para><para>Default value: "\n"</para>
+</refsect2>
+<refsect2 id="GsfOutputCsv--quote"><title>The <literal>&quot;quote&quot;</literal> property</title>
+<indexterm zone="GsfOutputCsv--quote"><primary>GsfOutputCsv:quote</primary></indexterm><programlisting>  &quot;quote&quot;                    <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>The string used for quoting fields.</para><para>Default value: "\""</para>
+</refsect2>
+<refsect2 id="GsfOutputCsv--quoting-mode"><title>The <literal>&quot;quoting-mode&quot;</literal> property</title>
+<indexterm zone="GsfOutputCsv--quoting-mode"><primary>GsfOutputCsv:quoting-mode</primary></indexterm><programlisting>  &quot;quoting-mode&quot;             <link linkend="GsfOutputCsvQuotingMode">GsfOutputCsvQuotingMode</link>  : Read / Write / Construct</programlisting>
+<para>When to quote fields.</para><para>Default value: GSF_OUTPUT_CSV_QUOTING_MODE_NEVER</para>
+</refsect2>
+<refsect2 id="GsfOutputCsv--quoting-on-whitespace"><title>The <literal>&quot;quoting-on-whitespace&quot;</literal> property</title>
+<indexterm zone="GsfOutputCsv--quoting-on-whitespace"><primary>GsfOutputCsv:quoting-on-whitespace</primary></indexterm><programlisting>  &quot;quoting-on-whitespace&quot;    <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>Does initial or terminal whitespace force quoting?.</para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="GsfOutputCsv--quoting-triggers"><title>The <literal>&quot;quoting-triggers&quot;</literal> property</title>
+<indexterm zone="GsfOutputCsv--quoting-triggers"><primary>GsfOutputCsv:quoting-triggers</primary></indexterm><programlisting>  &quot;quoting-triggers&quot;         <link linkend="gchar">gchar</link>*                : Read / Write</programlisting>
+<para>Characters that cause field quoting.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GsfOutputCsv--separator"><title>The <literal>&quot;separator&quot;</literal> property</title>
+<indexterm zone="GsfOutputCsv--separator"><primary>GsfOutputCsv:separator</primary></indexterm><programlisting>  &quot;separator&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para>The field separator.</para><para>Default value: ","</para>
+</refsect2>
+<refsect2 id="GsfOutputCsv--sink"><title>The <literal>&quot;sink&quot;</literal> property</title>
+<indexterm zone="GsfOutputCsv--sink"><primary>GsfOutputCsv:sink</primary></indexterm><programlisting>  &quot;sink&quot;                     <link linkend="GsfOutput">GsfOutput</link>*            : Read / Write</programlisting>
+<para>Where the compressed data is written.</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

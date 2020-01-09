@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Output to unstructured files</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="GSF Reference Manual">
+<link rel="up" href="io.html" title="Basic Input/Output">
+<link rel="prev" href="gsf-Input-from-unstructured-files.html" title="Input from unstructured files">
+<link rel="next" href="sources.html" title="Stream Sources">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="intro.html" title="Part I. GSF: Introduction">
+<link rel="part" href="history.html" title="Part II. GSF: History">
+<link rel="part" href="dependencies.html" title="Part III. GSF: Dependencies">
+<link rel="part" href="gsf-users.html" title="Part IV. Projects using GSF">
+<link rel="part" href="api.html" title="Part V. API Reference">
+<link rel="chapter" href="io.html" title="Basic Input/Output">
+<link rel="chapter" href="sources.html" title="Stream Sources">
+<link rel="chapter" href="parsers.html" title="Stream Parsers">
+<link rel="chapter" href="misc.html" title="Miscellaneous">
+<link rel="index" href="gsf-index.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gsf-Input-from-unstructured-files.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="io.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GSF Reference Manual</th>
+<td><a accesskey="n" href="sources.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#gsf-Output-to-unstructured-files.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gsf-Output-to-unstructured-files.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#gsf-Output-to-unstructured-files.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#gsf-Output-to-unstructured-files.properties" class="shortcut">Properties</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gsf-Output-to-unstructured-files"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gsf-Output-to-unstructured-files.top_of_page"></a>Output to unstructured files</span></h2>
+<p>Output to unstructured files</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="gsf-Output-to-unstructured-files.synopsis"></a><h2>Synopsis</h2>
+<a name="GsfOutput"></a><pre class="synopsis">
+                    <a class="link" href="gsf-Output-to-unstructured-files.html#GsfOutput-struct" title="GsfOutput">GsfOutput</a>;
+gboolean            <a class="link" href="gsf-Output-to-unstructured-files.html#gsf-output-set-name-from-filename" title="gsf_output_set_name_from_filename ()">gsf_output_set_name_from_filename</a>   (<a class="link" href="gsf-Output-to-unstructured-files.html#GsfOutput">GsfOutput</a> *output,
+                                                         char const *filename);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="gsf-Output-to-unstructured-files.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GObject
+   +----GsfOutput
+         +----<a class="link" href="gsf-Outfile-writing-structed-files.html#GsfOutfile">GsfOutfile</a>
+         +----<a class="link" href="gsf-Compression.html#GsfOutputBzip">GsfOutputBzip</a>
+         +----<a class="link" href="gsf-Text.html#GsfOutputCsv">GsfOutputCsv</a>
+         +----<a class="link" href="gsf-Compression.html#GsfOutputGZip">GsfOutputGZip</a>
+         +----<a class="link" href="gsf-Text.html#GsfOutputIconv">GsfOutputIconv</a>
+         +----<a class="link" href="gsf-GIOChannel.html#GsfOutputIOChannel">GsfOutputIOChannel</a>
+         +----<a class="link" href="gsf-memory.html#GsfOutputMemory">GsfOutputMemory</a>
+         +----<a class="link" href="gsf-Reading-and-Writing-from-local-files-and-directories.html#GsfOutputStdio">GsfOutputStdio</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="gsf-Output-to-unstructured-files.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="gsf-Output-to-unstructured-files.html#GsfOutput--is-closed" title='The "is-closed" property'>is-closed</a>"                gboolean              : Read
+  "<a class="link" href="gsf-Output-to-unstructured-files.html#GsfOutput--name" title='The "name" property'>name</a>"                     gchar*                : Read
+  "<a class="link" href="gsf-Output-to-unstructured-files.html#GsfOutput--position" title='The "position" property'>position</a>"                 gint64                : Read
+  "<a class="link" href="gsf-Output-to-unstructured-files.html#GsfOutput--size" title='The "size" property'>size</a>"                     gint64                : Read
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="gsf-Output-to-unstructured-files.description"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="gsf-Output-to-unstructured-files.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GsfOutput-struct"></a><h3>GsfOutput</h3>
+<pre class="programlisting">typedef struct _GsfOutput GsfOutput;</pre>
+<p>
+Class representing an output stream, counterpart to <a class="link" href="gsf-Input-from-unstructured-files.html#GsfInput"><span class="type">GsfInput</span></a>.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gsf-output-set-name-from-filename"></a><h3>gsf_output_set_name_from_filename ()</h3>
+<pre class="programlisting">gboolean            gsf_output_set_name_from_filename   (<a class="link" href="gsf-Output-to-unstructured-files.html#GsfOutput">GsfOutput</a> *output,
+                                                         char const *filename);</pre>
+<p>
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>This is a utility routine that should only be used by derived
+outputs.</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>output</code></em> :</span></p></td>
+<td> the output stream
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>filename</code></em> :</span></p></td>
+<td> the (fs-sys encoded) filename
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">TRUE</code> if the assignment was ok.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="gsf-Output-to-unstructured-files.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="GsfOutput--is-closed"></a><h3>The <code class="literal">"is-closed"</code> property</h3>
+<pre class="programlisting">  "is-closed"                gboolean              : Read</pre>
+<p>Whether the Output is Closed.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GsfOutput--name"></a><h3>The <code class="literal">"name"</code> property</h3>
+<pre class="programlisting">  "name"                     gchar*                : Read</pre>
+<p>The Output's Name.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GsfOutput--position"></a><h3>The <code class="literal">"position"</code> property</h3>
+<pre class="programlisting">  "position"                 gint64                : Read</pre>
+<p>The Output's Current Position.</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GsfOutput--size"></a><h3>The <code class="literal">"size"</code> property</h3>
+<pre class="programlisting">  "size"                     gint64                : Read</pre>
+<p>The Output's Size.</p>
+<p>Allowed values: &gt;= 0</p>
+<p>Default value: 0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

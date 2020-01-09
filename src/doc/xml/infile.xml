@@ -1,0 +1,201 @@
+<refentry id="gsf-Infile-reading-structed-files">
+<refmeta>
+<refentrytitle role="top_of_page" id="gsf-Infile-reading-structed-files.top_of_page">Infile reading structed files</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GSF Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Infile reading structed files</refname>
+<refpurpose></refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="gsf-Infile-reading-structed-files.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GsfInfile"/>
+<synopsis>
+                    <link linkend="GsfInfile-struct">GsfInfile</link>;
+<link linkend="int">int</link>                 <link linkend="gsf-infile-num-children">gsf_infile_num_children</link>             (<link linkend="GsfInfile">GsfInfile</link> *infile);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-infile-child-by-index">gsf_infile_child_by_index</link>           (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="int">int</link> i);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-infile-child-by-name">gsf_infile_child_by_name</link>            (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="char">char</link> const *name);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-infile-child-by-vname">gsf_infile_child_by_vname</link>           (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         ...);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-infile-child-by-aname">gsf_infile_child_by_aname</link>           (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="char">char</link> const *names[]);
+<link linkend="GsfInput">GsfInput</link>*           <link linkend="gsf-infile-child-by-vaname">gsf_infile_child_by_vaname</link>          (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="va-list">va_list</link> names);
+<link linkend="char">char</link>const *         <link linkend="gsf-infile-name-by-index">gsf_infile_name_by_index</link>            (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="int">int</link> i);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gsf-Infile-reading-structed-files.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GsfInput">GsfInput</link>
+         +----GsfInfile
+               +----<link linkend="GsfInfileMSOle">GsfInfileMSOle</link>
+               +----<link linkend="GsfInfileStdio">GsfInfileStdio</link>
+               +----<link linkend="GsfInfileZip">GsfInfileZip</link>
+               +----<link linkend="GsfStructuredBlob">GsfStructuredBlob</link>
+</synopsis>
+
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="gsf-Infile-reading-structed-files.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="gsf-Infile-reading-structed-files.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GsfInfile-struct" role="struct">
+<title>GsfInfile</title>
+<indexterm zone="GsfInfile-struct"><primary>GsfInfile</primary></indexterm><programlisting>typedef struct _GsfInfile GsfInfile;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="gsf-infile-num-children" role="function">
+<title>gsf_infile_num_children ()</title>
+<indexterm zone="gsf-infile-num-children"><primary>gsf_infile_num_children</primary></indexterm><programlisting><link linkend="int">int</link>                 gsf_infile_num_children             (<link linkend="GsfInfile">GsfInfile</link> *infile);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara> the structured storage
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of children the storage has, or -1 if the storage can not
+	have children.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-infile-child-by-index" role="function">
+<title>gsf_infile_child_by_index ()</title>
+<indexterm zone="gsf-infile-child-by-index"><primary>gsf_infile_child_by_index</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_infile_child_by_index           (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="int">int</link> i);</programlisting>
+<para>
+TODO : For 2.0 api will change to include a GError.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInfile"><type>GsfInfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>i</parameter>&nbsp;:</term>
+<listitem><simpara> target index
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a newly created child which must be unrefed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-infile-child-by-name" role="function">
+<title>gsf_infile_child_by_name ()</title>
+<indexterm zone="gsf-infile-child-by-name"><primary>gsf_infile_child_by_name</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_infile_child_by_name            (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="char">char</link> const *name);</programlisting>
+<para>
+TODO : For 2.0 api will change to include a GError.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInfile"><type>GsfInfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> target name
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a newly created child which must be unrefed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-infile-child-by-vname" role="function">
+<title>gsf_infile_child_by_vname ()</title>
+<indexterm zone="gsf-infile-child-by-vname"><primary>gsf_infile_child_by_vname</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_infile_child_by_vname           (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         ...);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated list of names
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a newly created child which must be unrefed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-infile-child-by-aname" role="function">
+<title>gsf_infile_child_by_aname ()</title>
+<indexterm zone="gsf-infile-child-by-aname"><primary>gsf_infile_child_by_aname</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_infile_child_by_aname           (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="char">char</link> const *names[]);</programlisting>
+<para>
+New in 1.14.9.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInfile"><type>GsfInfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>names</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array of names (e.g. from g_strsplit)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a newly created child which must be unrefed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-infile-child-by-vaname" role="function">
+<title>gsf_infile_child_by_vaname ()</title>
+<indexterm zone="gsf-infile-child-by-vaname"><primary>gsf_infile_child_by_vaname</primary></indexterm><programlisting><link linkend="GsfInput">GsfInput</link>*           gsf_infile_child_by_vaname          (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="va-list">va_list</link> names);</programlisting>
+<para>
+New in 1.14.9.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="GsfInfile"><type>GsfInfile</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>names</parameter>&nbsp;:</term>
+<listitem><simpara> A <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array of names (e.g. from g_strsplit)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a newly created child which must be unrefed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gsf-infile-name-by-index" role="function">
+<title>gsf_infile_name_by_index ()</title>
+<indexterm zone="gsf-infile-name-by-index"><primary>gsf_infile_name_by_index</primary></indexterm><programlisting><link linkend="char">char</link>const *         gsf_infile_name_by_index            (<link linkend="GsfInfile">GsfInfile</link> *infile,
+                                                         <link linkend="int">int</link> i);</programlisting>
+<para>
+</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>i</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the utf8 encoded name of the <parameter>i</parameter>-th child
+	<emphasis>DO NOT FREE THE STRING.</emphasis>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

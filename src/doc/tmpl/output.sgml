@@ -1,0 +1,55 @@
+<!-- ##### SECTION Title ##### -->
+Output to unstructured files
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GsfOutput ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG GsfOutput:is-closed ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GsfOutput:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GsfOutput:position ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG GsfOutput:size ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION gsf_output_set_name_from_filename ##### -->
+<para>
+
+</para>
+
+@output: 
+@filename: 
+@Returns: 
+
+
