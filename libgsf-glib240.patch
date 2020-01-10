@@ -1,0 +1,23 @@
+From 54bc0488c9d74c9d634a8d27c8a0d4eb3b2347c1 Mon Sep 17 00:00:00 2001
+From: Lionel Landwerlin <llandwerlin@gmail.com>
+Date: Thu, 21 Nov 2013 16:13:37 +0000
+Subject: output-iconv: fix compilation by replacing g_memmove() by memmove()
+
+https://bugzilla.gnome.org/show_bug.cgi?id=712827
+
+diff --git a/gsf/gsf-output-iconv.c b/gsf/gsf-output-iconv.c
+index 7196727..35ad10d 100644
+--- a/gsf/gsf-output-iconv.c
++++ b/gsf/gsf-output-iconv.c
+@@ -119,7 +119,7 @@ iconv_flush (GsfOutputIconv *ic, gboolean must_empty)
+ 			ok = FALSE;
+ 		} else {
+ 			ic->buf_len -= bytes_read;
+-			g_memmove (ic->buf, ic->buf + bytes_read, ic->buf_len);
++			memmove (ic->buf, ic->buf + bytes_read, ic->buf_len);
+ 
+ 			ok = gsf_output_write (ic->sink, bytes_written, data);
+ 			if (!ok) {
+-- 
+cgit v0.10.1
+

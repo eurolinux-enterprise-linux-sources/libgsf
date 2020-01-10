@@ -1,7 +1,7 @@
 Summary: GNOME Structured File library
 Name: libgsf
 Version: 1.14.26
-Release: 6%{?dist}
+Release: 7%{?dist}
 Group: System Environment/Libraries
 License: LGPLv2
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/1.14/%{name}-%{version}.tar.xz
@@ -15,6 +15,7 @@ Obsoletes: libgsf-python < 1.14.26
 
 Patch0: libgsf-gnome-695907-selinux-use-tmpdir-for-tmpfile.patch
 Patch1: libgsf-aarch64.patch
+Patch2: libgsf-glib240.patch
 
 %description
 A library for reading and writing structured files (e.g. MS OLE and Zip)
@@ -34,6 +35,7 @@ libgsf.
 %setup -q
 %patch0 -p1 -b .gnome695907-selinux-use-tmpdir-for-tmpfile.patch
 %patch1 -p1 -b .aarch64
+%patch2 -p1 -b .glib240
 
 %build
 %configure --disable-gtk-doc --disable-static
@@ -77,6 +79,9 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Aug 27 2014 Yaakov Selkowitz <yselkowi@redhat.com> - 1.14.26-7
+- Resolves: rhbz#1132679 Fix FTBFS with glib-2.40
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.14.26-6
 - Mass rebuild 2014-01-24
 
