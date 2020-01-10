@@ -1,7 +1,7 @@
 Summary: GNOME Structured File library
 Name: libgsf
 Version: 1.14.26
-Release: 4%{?dist}
+Release: 6%{?dist}
 Group: System Environment/Libraries
 License: LGPLv2
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/1.14/%{name}-%{version}.tar.xz
@@ -77,6 +77,12 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.14.26-6
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.14.26-5
+- Mass rebuild 2013-12-27
+
 * Thu Apr 04 2013 Caolán McNamara <caolanm@redhat.com> 1.14.26-4
 - Resolves: rhbz#922395 crash on fwrite
 
